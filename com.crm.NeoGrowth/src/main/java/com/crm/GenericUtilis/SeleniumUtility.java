@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtility extends Driver {
@@ -16,7 +18,10 @@ public class SeleniumUtility extends Driver {
 	 * @author Pavan.Joshi
 	 * @return
 	 */
-	public String getCurrentUrl() {
+	
+	public JavascriptExecutor jsExecutor;
+	
+	public String getCurrentTitle() {
         try {
             String title = driver.getCurrentUrl();
             System.out.println("Title is : " + title);
@@ -128,10 +133,8 @@ public class SeleniumUtility extends Driver {
 	        return null;
 	    }
 	 
-        /**
-         * @author Pavan.Joshi
-         * @param xpath
-         */
+       /**
+        */
 	 public void moveToElement(WebElement element) {
 	        try {
 	           // WebElement element = driver.findElement(By.xpath(xpath));
@@ -167,11 +170,11 @@ public class SeleniumUtility extends Driver {
 	    }
 
 	 /**
-	  * @author Pavan.Joshi
+	  * @author Vinay.Gaonkar
 	  * @param xpath
 	  * @return
 	  */
-	 public List<String> getAllElementsToList(String xpath) {
+	/* public List<String> getAllElementsToList(String xpath) {
 	        try {
 	        	ArrayList<String> AllElementsText=new ArrayList<String>();
 	            List<WebElement> AllElements = driver.findElements(By.xpath(xpath));
@@ -187,10 +190,57 @@ public class SeleniumUtility extends Driver {
 	            ArrayList<String> AllElement1 = new ArrayList<String>();
 	            AllElement1.add("Unable to get text for all options");
 	            return AllElement1;
+	        }*/
+	        
+	        
+	        public synchronized void selectByText(WebElement element, String Text) {
+	    		try {
+	    			Select selecvalue=new Select(element);
+	    			selecvalue.selectByVisibleText(Text);
+	    		} catch (Exception e) {
+	    			Assert.fail("Unable to select  " + Text);
+	    		}
 	        }
+	        
+	    		public synchronized void selectByvalue(WebElement element, String value) {
+		    		try {
+		    			Select selecvalue=new Select(element);
+		    			selecvalue.selectByValue(value);
+		    		} catch (Exception e) {
+		    			Assert.fail("Unable to select  " + value);
+		    		}
+		    		
+	    		
+	    	}
+	    		
+		    		public synchronized void selectByindex(WebElement element, int index) {
+			    		try {
+			    			Select selecvalue=new Select(element);
+			    			selecvalue.selectByIndex(index);
+			    		} catch (Exception e) {
+			    			Assert.fail("Unable to select  " + index);
+			    		}	}
+	    		
+			    		
+			    		public void clickCheckBox(WebElement element, String elementname) {
+
+			    			if (element.isSelected()) {
+			                  Assert.assertTrue(elementname, true);;
+			    			} else {
+			    				element.click();
+			    			}
+                              
+			    			}
+			    			
+			    			public void scrollToElement(WebElement element, String elementName)  {
+			    				try {
+			    					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+			    				} catch (Exception e) {
+			    					Assert.fail("unable to scroll" + elementName);
+			    				}		
 	    }
 
-
+       
 
 
 

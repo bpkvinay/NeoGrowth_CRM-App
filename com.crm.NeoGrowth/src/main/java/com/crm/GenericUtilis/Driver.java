@@ -26,13 +26,13 @@ public class Driver {
 
     public static Properties prop;
 
-    public Properties readConfig(String key) throws IOException
+    public String readConfig(String key) throws IOException
     {
         try {
             prop=new Properties();
             FileInputStream fis= new FileInputStream(IpathConstant.Proppath);
             prop.load(fis);
-            return  prop;
+            return  prop.getProperty(key);
 
         }
         catch (Exception e)

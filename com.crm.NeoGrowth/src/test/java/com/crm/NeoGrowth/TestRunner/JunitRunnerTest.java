@@ -23,17 +23,17 @@ import io.cucumber.junit.CucumberOptions;
           
 public class JunitRunnerTest extends BaseClass {
 	//WebDriver driver;
-	@Before
-	public void launchbrowser() {
-		openBrowser("chrome", "https://crm2_0uat.neogrowth.in");
-	}
+	//@Before
+	//public void launchbrowser() {
+	//	openBrowser("chrome", "https://crm2_0uat.neogrowth.in");
+	//}
 	
 	
-	@After
-	public void closebrowser()  {
+	//@After
+	//public void closebrowser()  {
 		
-	    driver.close();	
-		
-	}
+	  //  driver.close();	
+	//	
+	//}
       
 }

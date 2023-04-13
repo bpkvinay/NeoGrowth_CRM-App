@@ -10,8 +10,6 @@ import com.crm.GenericUtilis.SeleniumUtility;
 
 public class OpportunityPagetest extends Driver{
 	
-	
-
 	public SeleniumUtility sp=new SeleniumUtility();
 	
 	//WebDriver driver;

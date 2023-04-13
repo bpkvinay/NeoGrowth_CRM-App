@@ -1,5 +1,7 @@
 package com.crm.POM;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,7 @@ import com.crm.GenericUtilis.Driver;
 public class LoginPagetest extends Driver{
 	//Driver driver;
 	//WebDriver driver;
+	Driver dr=new Driver();
 	@FindBy(name="username")
 	private  WebElement UserTF;
 	
@@ -53,10 +56,12 @@ public class LoginPagetest extends Driver{
 //	}
 	
 	//Business lib
-	public void loginpage() {
-		UserTF.sendKeys("Pavan.Joshi");
-	    PasswordTF.sendKeys("Haveri@1234");
+	public void loginpage() throws IOException {
+		
+		UserTF.sendKeys(dr.readConfig("UserName"));
+		PasswordTF.sendKeys(dr.readConfig("Password"));
 		LoginBtn.click();
+		
 	}
 
 }
