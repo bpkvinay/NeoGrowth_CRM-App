@@ -238,6 +238,8 @@ public class SeleniumUtility extends Driver {
 			    				} catch (Exception e) {
 			    					Assert.fail("unable to scroll" + elementName);
 			    				}		
+			    				
+			    				String -HASKjns;
 	    }
 
        
