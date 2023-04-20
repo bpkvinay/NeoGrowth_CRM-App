@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
         		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
              
                 glue = {"com.crm.NeoGrowthstepDef"},
-               tags="@tag2",
+               //tags="@tag2",
         		plugin= {"html:target/cucumber.html","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         	
         		
@@ -24,5 +24,8 @@ import io.cucumber.junit.CucumberOptions;
           
 public class JunitRunnerTest {
 	
+	public void gyio() {
+		 String haslasasa;
+	}
       
 }
