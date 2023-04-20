@@ -24,9 +24,7 @@ import io.cucumber.junit.CucumberOptions;
           
 public class JunitRunnerTest {
 	
-	public void gyio() {
-		 String haslasasa;
-		 int a;
+	
 	}
       
-}
+
