@@ -27,7 +27,6 @@ public class Hooks extends Driver {
 		String br = dri.readConfig("browser");
 		   String qaurl = dri.readConfig("URL");
 		openBrowser(br,qaurl );
-		//Lp.loginpage();
 	}
 	
 	@After

@@ -19,7 +19,7 @@ public class SeleniumUtility extends Driver {
 	 * @return
 	 */
 	
-	public JavascriptExecutor jsExecutor;
+	public JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
 	
 	public String getCurrentTitle() {
         try {
@@ -193,6 +193,11 @@ public class SeleniumUtility extends Driver {
 	        }*/
 	        
 	        
+	 /**
+	  * @author Vinay.Gaonkar
+	  * @param element
+	  * @param  to get 
+	  */
 	        public synchronized void selectByText(WebElement element, String Text) {
 	    		try {
 	    			Select selecvalue=new Select(element);
@@ -232,15 +237,32 @@ public class SeleniumUtility extends Driver {
                               
 			    			}
 			    			
+			    		
+			    		/**
+			    		 * @author Vinay.Gaonkar
+			    		 * @param element
+			    		 * @param elementName
+			    		 */
 			    			public void scrollToElement(WebElement element, String elementName)  {
 			    				try {
 			    					jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
 			    				} catch (Exception e) {
 			    					Assert.fail("unable to scroll" + elementName);
 			    				}		
+			    			}
 			    				
-			    				String -HASKjns;
-	    }
+			    				
+			    				public void togetoptionspresentindropdown(WebElement element) {
+			    					
+			    					Select se= new Select(element);
+			    					List<WebElement> options = se.getOptions();
+			    					System.out.println("Options present in" + element + "dropdown");
+									for(WebElement b:options) {
+			    						System.out.println(b.getText());
+			    					
+			    				}
+	
+			    				}}
 
        
 
@@ -255,4 +277,4 @@ public class SeleniumUtility extends Driver {
 
 
 
-}
+

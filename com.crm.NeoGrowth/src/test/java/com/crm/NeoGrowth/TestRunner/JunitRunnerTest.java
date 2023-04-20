@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
-import com.crm.GenericUtilis.BaseClass;
+
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -16,24 +16,13 @@ import io.cucumber.junit.CucumberOptions;
         		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
              
                 glue = {"com.crm.NeoGrowthstepDef"},
+               tags="@tag2",
         		plugin= {"html:target/cucumber.html","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         	
         		
        )
           
-public class JunitRunnerTest extends BaseClass {
-	//WebDriver driver;
-	//@Before
-	//public void launchbrowser() {
-	//	openBrowser("chrome", "https://crm2_0uat.neogrowth.in");
-	//}
+public class JunitRunnerTest {
 	
-	
-	//@After
-	//public void closebrowser()  {
-		
-	  //  driver.close();	
-	//	
-	//}
       
 }

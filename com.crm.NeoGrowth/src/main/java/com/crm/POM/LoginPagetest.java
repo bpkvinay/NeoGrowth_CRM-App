@@ -12,8 +12,6 @@ import com.crm.GenericUtilis.Driver;
 
 
 public class LoginPagetest extends Driver{
-	//Driver driver;
-	//WebDriver driver;
 	Driver dr=new Driver();
 	@FindBy(name="username")
 	private  WebElement UserTF;
@@ -44,18 +42,6 @@ public class LoginPagetest extends Driver{
 		return LoginBtn;
 	}
 	
-//	public void getusername() {
-//		UserTF.sendKeys("vinay");
-//	}
-//	
-//	public void getpass() {
-//		PasswordTF.sendKeys("dhsgf");
-//	}
-//	public void click() {
-//		LoginBtn.click();
-//	}
-	
-	//Business lib
 	public void loginpage() throws IOException {
 		
 		UserTF.sendKeys(dr.readConfig("UserName"));
