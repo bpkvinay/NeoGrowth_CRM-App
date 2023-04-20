@@ -26,6 +26,7 @@ public class JunitRunnerTest {
 	
 	public void gyio() {
 		 String haslasasa;
+		 int a;
 	}
       
 }
