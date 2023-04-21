@@ -16,8 +16,11 @@ import io.cucumber.junit.CucumberOptions;
         		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
              
                 glue = {"com.crm.NeoGrowthstepDef"},
-               //tags="@tag2",
-        		plugin= {"html:target/cucumber.html","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+               tags="@tag2",
+               monochrome=true,
+        		plugin= {"pretty",
+        				"html:target/cucumber.html",
+        				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         	
         		
        )

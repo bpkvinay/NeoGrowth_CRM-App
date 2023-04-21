@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -40,9 +43,16 @@ public class Driver {
             return null;
 
         }
-
-
     }
+    
+        public String getexceldata(String sheetname, int rownum,int colnum) throws EncryptedDocumentException, IOException {
+        	
+        	FileInputStream xls=new FileInputStream(IpathConstant.Excelpath);
+        	Workbook wb = (Workbook) WorkbookFactory.create(xls);
+        	return wb.getSheet(sheetname).getRow(rownum).getCell(colnum).getStringCellValue();
+        }
+
+    
 
   public void openBrowser(String browser, String URL)
   {

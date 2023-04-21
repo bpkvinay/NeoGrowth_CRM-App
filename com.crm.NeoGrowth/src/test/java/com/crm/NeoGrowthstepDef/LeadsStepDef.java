@@ -1,5 +1,8 @@
 package com.crm.NeoGrowthstepDef;
 
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
 import org.junit.Assert;
 
 
@@ -14,6 +17,7 @@ import io.cucumber.java.en.When;
 public class LeadsStepDef extends Driver{
 	
 	Leadspage lp=new Leadspage(driver);
+	Driver dr=new Driver();
 	
 
 	
@@ -37,7 +41,11 @@ public class LeadsStepDef extends Driver{
    
 
     @Then("Leads list page should be display")
-    public void leads_list_page_should_be_display() {
+    public void leads_list_page_should_be_display() throws EncryptedDocumentException, IOException {
+    	String Actual = dr.getexceldata("Titles", 1, 1);
+    	System.out.println(Actual);
+    	 String expected = driver.getTitle();
+    	 Assert.assertEquals(Actual,expected);
       
     }
     @Then("^Edit page should be display$")

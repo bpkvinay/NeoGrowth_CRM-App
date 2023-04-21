@@ -3,8 +3,9 @@ Feature: Leads Testcases
 
 
   Scenario Outline: Editing Leads from leads module
+    
     Given User enters Username and password and click on the Login Btn
-   When Mouse move over all sticky menu
+    When Mouse move over all sticky menu
     And click on the Leads module link
     Then Leads list page should be display 
     When Click on pencil edit link
@@ -31,17 +32,17 @@ Feature: Leads Testcases
   
  #Scenario: Verify the Meeting Page when user clicked on Subject Link From activities submodule
   
-  #Given User enters Username and password and click on the Login Btn
- #When Mouse move over all sticky menu
- #And click on the Leads module link
- #Then Leads list page should be display
- #When click on LeadsNameLink
- #Then Leadsdetailspage should be display
- #And scroll down and click activities submodule
- #And click Creattask dropdown
- #And click on Schedule meeting option 
- #And Enter subject in <Subject> TF 
-# And Select Date from <StartDate>
+ # Given User enters Username and password and click on the Login Btn
+ # When Mouse move over all sticky menu
+ # And click on the Leads module link
+ # Then Leads list page should be display
+ # When click on LeadsNameLink
+ # Then Leadsdetailspage should be display
+ # And scroll down and click activities submodule
+  #And click Creattask dropdown
+  #And click on Schedule meeting option 
+  #And Enter subject in <Subject> TF 
+  #And Select Date from <StartDate>
   
   
   
