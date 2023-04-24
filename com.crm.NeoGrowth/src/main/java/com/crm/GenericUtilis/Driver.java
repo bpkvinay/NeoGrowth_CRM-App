@@ -28,7 +28,7 @@ public class Driver {
     private static DesiredCapabilities capabilities;
 
     public static Properties prop;
-
+    
     public String readConfig(String key) throws IOException
     {
         try {

@@ -43,7 +43,6 @@ public class LeadsStepDef extends Driver{
     @Then("Leads list page should be display")
     public void leads_list_page_should_be_display() throws EncryptedDocumentException, IOException {
     	String Actual = dr.getexceldata("Titles", 1, 1);
-    	System.out.println(Actual);
     	 String expected = driver.getTitle();
     	 Assert.assertEquals(Actual,expected);
       

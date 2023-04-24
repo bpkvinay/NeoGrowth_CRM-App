@@ -122,6 +122,7 @@ public class Leadspage extends Driver{
 
 
 	public void EnterRemarkTF(String value) {
+		remarkTF.clear();
 		remarkTF.sendKeys(value);
 	}
 

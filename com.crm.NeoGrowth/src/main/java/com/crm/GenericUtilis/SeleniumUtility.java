@@ -260,9 +260,16 @@ public class SeleniumUtility extends Driver {
 									for(WebElement b:options) {
 			    						System.out.println(b.getText());
 			    					
-			    				}
-	
 			    				}}
+									public void Alertpopupclickokbutton() {
+										driver.switchTo().alert().accept();
+									}
+									
+									public void AlertpopupclickCancelbutton() {
+										driver.switchTo().alert().dismiss();
+									}
+			    				
+ 				}
 
        
 

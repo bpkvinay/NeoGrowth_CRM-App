@@ -27,6 +27,13 @@ public class OpportunityPagetest extends Driver{
 	@FindBy(xpath="//h2[contains(., 'Opportunities')]")
 	private WebElement ExpectedTitle;
 	
+	@FindBy(xpath="//select[@id='massassign_group']")
+	private WebElement MassAssignGroupDrown;
+	
+	@FindBy(xpath="//table[1]/tbody[1]/tr[1]/td[1]/input[1]")
+	private WebElement checkboxbtn;
+	
+	
 	public OpportunityPagetest(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -41,9 +48,9 @@ public class OpportunityPagetest extends Driver{
 		return OppLink;
 	}
 	
-   public void Clickopplink() throws InterruptedException
+   public WebElement Clickopplink()
    {
-	   oppurtnamelink.click();
+	   return oppurtnamelink;
 	
    }
    public void scrollelement() {
@@ -54,5 +61,13 @@ public class OpportunityPagetest extends Driver{
    public String getExpectedTitle() {
 	   String expectedtitle = ExpectedTitle.getText();
 	   return expectedtitle;
+   }
+   
+   public void selectoptionfrommassassignDropDown( String opt) {
+	   sp.selectByText(MassAssignGroupDrown,opt);
+   }
+   
+   public void clickcheckboxbutton() {
+	   sp.clickCheckBox(checkboxbtn, "checkbox");
    }
 }
