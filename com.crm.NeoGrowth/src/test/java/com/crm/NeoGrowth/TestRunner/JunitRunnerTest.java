@@ -26,8 +26,9 @@ import io.cucumber.junit.CucumberOptions;
        )
           
 public class JunitRunnerTest {
+	public void String() {
+	String Sring = "aa";
 	
-	
-	}
+	}}
       
 
