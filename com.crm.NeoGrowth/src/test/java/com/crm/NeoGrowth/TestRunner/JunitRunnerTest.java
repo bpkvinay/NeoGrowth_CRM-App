@@ -26,7 +26,7 @@ import io.cucumber.junit.CucumberOptions;
        )
           
 public class JunitRunnerTest {
-	
+	hasjkan;
 	
 	}
       
