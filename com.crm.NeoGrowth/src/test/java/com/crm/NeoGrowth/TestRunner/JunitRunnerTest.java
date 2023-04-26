@@ -26,7 +26,9 @@ import io.cucumber.junit.CucumberOptions;
        )
           
 public class JunitRunnerTest {
-	
+	public void str() {
+		
+	}
 	
 	}
       
