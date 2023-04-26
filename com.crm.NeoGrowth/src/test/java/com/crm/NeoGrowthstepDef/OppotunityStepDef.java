@@ -53,14 +53,7 @@ public class OppotunityStepDef extends Driver{
 	    Assert.assertEquals(driver.getTitle(),ActualTitle);
 	
 	}
-	@Then("user scroll and click on remove button")
-    public void user_scroll_and_click_on_remove_button() throws InterruptedException {
-		Thread.sleep(3000);
-        opp.scrollelement();
-        Thread.sleep(3000);
-    }
 	
-
 	    @When("user clicked on firstuser name link")
 	    public void user_clicked_on_firstuser_name_link() throws InterruptedException {
 	    	Thread.sleep(2000);
@@ -74,17 +67,6 @@ public class OppotunityStepDef extends Driver{
 	        Assert.assertEquals(driver.getTitle(),ActualTitle);
 	    }
 
-	    @Then("^User select (.+) from massassignGroupDown dropdown$")
-	    public void user_select_from_massassigngroupdown_dropdown(String option) throws Throwable {
-	        opp.selectoptionfrommassassignDropDown(option);
-	   }
-
-	 
-
-	   @Then("^opportunity should be deleted$")
-	    public void opportunity_should_be_deleted() throws Throwable {
-		   
-	    }
 	   @When("^User Should select one opportunity$")
 	   public void user_should_select_one_opportunity() throws Throwable {
         opp.clickcheckboxbutton();
@@ -95,5 +77,58 @@ public class OppotunityStepDef extends Driver{
 	    public void click_ok_button_from_alert_popup() throws Throwable {
 	     sp.Alertpopupclickokbutton();
 	   }
+	    
+	    @And("^User select (.+) from massassignGroupDown dropdown$")
+	    public void user_select_from_massassigngroupdown_dropdown(String option) throws Throwable {
+	    opp.selectoptionfrommassassignDropDown(option);
+        }
+
+	 
+	    @And("user scroll and click on remove button")
+	    public void user_scroll_and_click_on_remove_button() throws InterruptedException {
+	    Thread.sleep(3000);
+	    opp.scrollelement();
+	    Thread.sleep(3000);
+      }
+
+
+   @Then("^opportunity should be deleted$")
+ public void opportunity_should_be_deleted() throws Throwable {
+  }
+
+	    @When("^click on the Edit icon$")
+	    public void click_on_the_edit_icon() throws Throwable {
+	    	Thread.sleep(5000);
+	        opp.getEditicon();
+	        Thread.sleep(5000);
+	    }
+
+	    @When("^Enter the opportunity name into (.+) TF$")
+	    public void enter_the_opportunity_name_into_tf(String opportunityname) throws Throwable {
+	        opp.getOppotunitynameTF(opportunityname);
+	        Thread.sleep(3000);
+	    }
+
+
+	    @Then("^User edit page should be displayed$")
+	    public void user_edit_page_should_be_displayed() throws Throwable {
+	       
+	    }
+
+	    @And("^Enter the loan amount into (.+) TF$")
+	    public void enter_the_loan_amount_into_tf(String loanamount) throws Throwable {
+	    	opp.getLoanamountTF(loanamount);
+	    }
+
+	    @And("^select the Pickup/appointment city from (.+) Drop Down$")
+	    public void select_the_pickupappointment_city_from_drop_down(String pickupcity) throws Throwable {
+	        opp.getPickupcityDD(pickupcity);
+	    }
+
+	    @And("^scroll the page and click on the save button$")
+	    public void scroll_the_page_and_click_on_the_save_button() throws Throwable {
+	        opp.getSaveBtn();
+	    }
+
 	    
 }

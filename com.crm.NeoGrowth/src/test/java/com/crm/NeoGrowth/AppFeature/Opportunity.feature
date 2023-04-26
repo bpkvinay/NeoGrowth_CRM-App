@@ -29,6 +29,21 @@ Feature: opportunity
      Examples:  
      |option|
      |Alliance telecallers|  
+     
+     
+      @editpage
+        #Edit page mandatory fields end to end test
+        Scenario: verify opportunity User Edit Page
+        When click on the Edit icon
+        Then User edit page should be displayed
+        When Enter the opportunity name into <opportunityname> TF 
+        And Enter the loan amount into <loanamount> TF
+        And select the Pickup/appointment city from <pickupcity> Drop Down
+        And scroll the page and click on the save button
+        
+        Examples:
+        |opportunityname           |loanamount|pickupcity|
+        |Royal                     |20000     |VIJAYWADA |
         
     
   
