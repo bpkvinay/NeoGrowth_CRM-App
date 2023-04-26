@@ -33,6 +33,22 @@ public class OpportunityPagetest extends Driver{
 	@FindBy(xpath="//table[1]/tbody[1]/tr[1]/td[1]/input[1]")
 	private WebElement checkboxbtn;
 	
+	@FindBy(xpath = "//input[@name='name']")
+	private WebElement oppotunitynameTF;
+	
+	@FindBy(xpath = "//input[@name='loan_amount_c']")
+	private WebElement loanamountTF;
+	
+	@FindBy(xpath = "//select[@name='pickup_appointment_city_c']")
+	private WebElement pickupcityDD;
+	
+	@FindBy(xpath = "(//input[@title='Save'])[2]")
+	private WebElement saveBtn;
+	
+	@FindBy(xpath = "//table[1]/tbody[1]/tr[1]/td[2]/a[1]")
+	private WebElement Editicon;
+	
+	
 	
 	public OpportunityPagetest(WebDriver driver) {
 		this.driver = driver;
@@ -70,4 +86,27 @@ public class OpportunityPagetest extends Driver{
    public void clickcheckboxbutton() {
 	   sp.clickCheckBox(checkboxbtn, "checkbox");
    }
+   
+   public void getOppotunitynameTF(String opportunityname) {
+		 oppotunitynameTF.clear();
+		 oppotunitynameTF.sendKeys(opportunityname);
+	}
+
+	public void getLoanamountTF(String loanamount) {
+		loanamountTF.clear();
+		loanamountTF.sendKeys(loanamount);
+	}
+
+	public void getPickupcityDD(String pickupcity) {
+		sp.selectByvalue(pickupcityDD, pickupcity);
+	}
+
+	public void getSaveBtn() {
+		sp.scrollToElement(saveBtn, "savebtn");
+		saveBtn.click();
+	}
+
+	public void getEditicon() {
+		Editicon.click();
+	}
 }
