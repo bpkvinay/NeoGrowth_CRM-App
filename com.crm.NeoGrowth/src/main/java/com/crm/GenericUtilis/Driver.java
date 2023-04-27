@@ -20,14 +20,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Driver {
-	
-	
-	
 	public  WebDriver driver=getWebDriver();
     private static ThreadLocal<WebDriver>threadDriver=new ThreadLocal<WebDriver>();
     private static DesiredCapabilities capabilities;
-
     public static Properties prop;
+    
+    /**
+     * This Method is used to fetchData From Properties File
+     * @param key
+     * @return
+     * @throws IOException
+     * @author Vinay.Gaonkar
+     */
     
     public String readConfig(String key) throws IOException
     {
@@ -45,6 +49,17 @@ public class Driver {
         }
     }
     
+    
+     /**
+      * This Method is used to FetchData From ExcelSheet
+      * @param sheetname
+      * @param rownum
+      * @param colnum
+      * @return
+      * @throws EncryptedDocumentException
+      * @throws IOException
+      * @author Vinay.Gaonkar
+      */
         public String getexceldata(String sheetname, int rownum,int colnum) throws EncryptedDocumentException, IOException {
         	
         	FileInputStream xls=new FileInputStream(IpathConstant.Excelpath);
@@ -54,6 +69,13 @@ public class Driver {
 
     
 
+        /**
+         * This Method is used to LaunchBrowser
+         * @param browser
+         * @param URL
+         * @author Pavan.Joshi
+         */
+        
   public void openBrowser(String browser, String URL)
   {
       DesiredCapabilities capabilities;
@@ -68,15 +90,20 @@ public class Driver {
 
           default:
               Assert.fail("invalid browser");
-
-
-
-      }
+ }
       driver.manage().deleteAllCookies();
       driver.manage().window().maximize();
       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
       driver.get(URL);
   }
+  
+  
+  /**
+   * This Method is used for SetFireFoxDriver
+   * @return
+   * @author Pavan.Joshi
+   */
+  
   private WebDriver setFireFoxDriverLocal()
   {
       FirefoxOptions options= new FirefoxOptions();
@@ -86,6 +113,14 @@ public class Driver {
       driver=new FirefoxDriver(options);
       return driver;
   }
+  
+  
+  
+  /**
+   * This Method is used for SetChromeDriver
+   * @return
+   * @author Pavan.Joshi
+   */
     private WebDriver setChromeDriverLocal()
     {
         ChromeOptions options= new ChromeOptions();
@@ -101,7 +136,11 @@ public class Driver {
     }
 
 
-
+     /**
+      * 
+      * @return
+      */
+    
     public static WebDriver getWebDriver()
     {
         System.out.println("WebDriver "+threadDriver.get());

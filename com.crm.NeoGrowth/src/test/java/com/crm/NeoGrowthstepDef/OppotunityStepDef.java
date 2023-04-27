@@ -129,6 +129,81 @@ public class OppotunityStepDef extends Driver{
 	    public void scroll_the_page_and_click_on_the_save_button() throws Throwable {
 	        opp.getSaveBtn();
 	    }
+        
+	    @When("^click on LeadsNameLink$")
+	    public void click_on_leadsnamelink() throws Throwable {
+	        
+	    }
+
+	    @When("^User Click on TaskLink$")
+	    public void user_click_on_tasklink() throws Throwable {
+	       
+	    }
+
+	    @Then("^Leadsdetailspage should be display$")
+	    public void leadsdetailspage_should_be_display() throws Throwable {
+	       
+	    }
+
+	    @Then("^CreateTask Should be created$")
+	    public void createtask_should_be_created() throws Throwable {
+	        
+	    }
+
+	    @Then("^User should lands to Meetingpage $")
+	    public void user_should_lands_to_meetingpage() throws Throwable {
+	       
+	    }
+
+	    @And("^scroll down and click activities submodule$")
+	    public void scroll_down_and_click_activities_submodule() throws Throwable {
+	        
+	    }
+
+	    @And("^click Creattask dropdown$")
+	    public void click_creattask_dropdown() throws Throwable {
+	        
+	    }
+
+	    @And("^click on Schedule meeting option $")
+	    public void click_on_schedule_meeting_option() throws Throwable {
+	        
+	    }
+
+	    @And("^Enter subject in (.+) TF $")
+	    public void enter_subject_in_tf(String subject) throws Throwable {
+	        
+	    }
+
+	    @And("^Select Date from (.+)$")
+	    public void select_date_from(String startdate) throws Throwable {
+	        
+	    }
+
+	    @And("^Click StartTime DropDown and select (.+)$")
+	    public void click_starttime_dropdown_and_select(String starthour) throws Throwable {
+	        
+	    }
+
+	    @And("^Click StartMinute DropDown and select (.+)$")
+	    public void click_startminute_dropdown_and_select(String startminute) throws Throwable {
+	        
+	    }
+
+	    @And("^Click EndTime DropDown and select (.+)$")
+	    public void click_endtime_dropdown_and_select(String endhour) throws Throwable {
+	        
+	    }
+
+	    @And("^Click EndMinute DropDown and select (.+)$")
+	    public void click_endminute_dropdown_and_select(String endminute) throws Throwable {
+	        
+	    }
+
+	    @And("^ Click on Save button$")
+	    public void click_on_save_button() throws Throwable {
+	       
+	    }
 
 	    
 }

@@ -54,6 +54,9 @@ public class Leadspage extends Driver{
 	@FindBy(xpath="(//input[@type='submit'])[2]")
 	private WebElement Savebtn;
 	
+	@FindBy(xpath=("//table/tbody/tr[1]/td[3]"))
+	private WebElement LeadsNameLink;
+	
 	
 	
 	public Leadspage(WebDriver driver) {
@@ -157,5 +160,8 @@ public class Leadspage extends Driver{
 		sel.togetoptionspresentindropdown(CCDispostiondropdown);
 //sel.togetoptionspresentindropdown(CamoppSubStatus);
 }
+	public void ClickLeadsNameLink() {
+		LeadsNameLink.click();
+	}
 
 }
