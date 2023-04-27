@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
         		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
              
                 glue = {"com.crm.NeoGrowthstepDef"},
-               //tags="@sanity",
+               tags="@sanity",
                monochrome=true,
         		plugin= {"pretty",
         				"html:target/cucumber.html",
@@ -26,9 +26,7 @@ import io.cucumber.junit.CucumberOptions;
        )
           
 public class JunitRunnerTest {
-	public void str() {
-		
-	}
+	
 	
 	}
       
