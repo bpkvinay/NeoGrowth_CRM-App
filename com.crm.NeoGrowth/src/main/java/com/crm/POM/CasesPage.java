@@ -13,10 +13,10 @@ public class CasesPage extends Driver {
 	SeleniumUtility su = new SeleniumUtility();
 	
 	@FindBy(xpath = "(//a[text()='Cases'])[3]")
-	private WebElement caseslink;
+	private WebElement CasesLink;
 
 	@FindBy(xpath = "//table/tbody/tr[1]/td[2]/a")
-	private WebElement PencilLink;
+	private WebElement PencilIcon;
 	
 	@FindBy(xpath = "//input[@id='tat_in_days_c']")
 	private WebElement TatDaysTF;
@@ -40,37 +40,38 @@ public class CasesPage extends Driver {
 		
 	}
 	 
-	public WebElement getCaseslink() {
-		return caseslink;
+	public WebElement ClickCasesLink() {
+	 return CasesLink;
 	}
 
-	public WebElement getPencilLink() {
-		return PencilLink;
+	public WebElement ClickPencilIcon() {
+		return PencilIcon;
+	
 	}
 
-	public WebElement getTatDaysTF(String Tatdaysvalue) {
+	public void getTatDaysTF(String Tatdaysvalue) {
 		TatDaysTF.clear();
 		TatDaysTF.sendKeys(Tatdaysvalue);
-		return TatDaysTF;
+	
 	}
 
-	public void getCaseCategoryDropdown(String subcategoryvalue) {
-		su.selectByText(CaseCategoryDropdown, subcategoryvalue);
+	public void ClickCaseCategoryDropdown(String categoryValue) {
+		su.selectByText(CaseCategoryDropdown, categoryValue);
 		
 		
 	}
 
-	public void getCaseSubCategoryDropdown(String Casesubvalue) {
+	public void ClickCaseSubCategoryDropdown(String Subcategoryvalue) {
 		
-		su.selectByText(CaseSubCategoryDropdown, Casesubvalue);
+		su.selectByText(CaseSubCategoryDropdown, Subcategoryvalue);
 	}
 
-	public void getCaseDetailsDropdown(String Casedetailvalue) {
+	public void ClickCaseDetailsDropdown(String Casedetailvalue) {
 		su.selectByText(CaseDetailsDropdown, Casedetailvalue);
 		
 	}
 
-	public void getSaveButton() {
+	public void ClickSaveButton() {
 		su.scrollToElement(SaveButton, "savebtn");
 		SaveButton.click();
 		

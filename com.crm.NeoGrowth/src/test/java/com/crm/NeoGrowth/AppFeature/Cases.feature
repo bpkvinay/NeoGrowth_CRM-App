@@ -21,5 +21,6 @@ Feature: Cases Module
    |Tatdaysvalue|Casecategory|Casesubcategory                |Casedetails|
    |9865432     |Legal       |Withdrawal of Legal/Arbitration|Loan Closed|
    
-  
-
+   
+   
+ 
