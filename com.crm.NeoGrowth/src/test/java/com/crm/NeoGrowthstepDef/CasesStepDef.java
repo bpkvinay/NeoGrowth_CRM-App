@@ -68,6 +68,11 @@ public class CasesStepDef extends Driver {
 	    public void user_scrolldown_click_savebtn()  {
 	    	cp.ClickSaveButton();
 	    }
+	    
+	    @And("click master")
+	    public void click_master() {
+	    	
+	    }
 }
 
 	    

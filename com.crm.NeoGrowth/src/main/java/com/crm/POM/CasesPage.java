@@ -76,4 +76,7 @@ public class CasesPage extends Driver {
 		SaveButton.click();
 		
 	}
+	public void ClickMaster() {
+		
+	}
 }
