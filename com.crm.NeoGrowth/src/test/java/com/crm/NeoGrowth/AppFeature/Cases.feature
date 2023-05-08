@@ -23,4 +23,16 @@ Feature: Cases Module
    
    
    
- 
+
+  Scenario: Validate Massupdate Should be update in cases and click update button
+  When Click On Cases Checkbox 
+  And User Click on bulkaction Dropdown and select <Bulkaction> option
+  And User Scrolldown Click on Priority dropdown and select <Priority> option
+  And Click on CasecategoryDD and select <CasecategoryValue> option
+  And Click on CaseSubcategoryDD and select <CaseSubcategoryValue> option
+  And Click on CaseDetailDD and select <CaseDetailsValue> option
+  And User Scrolldown Click updateBtn
+  Then View Update Popup should be display
+  And User Scrolldown click OKbtn
+
+
