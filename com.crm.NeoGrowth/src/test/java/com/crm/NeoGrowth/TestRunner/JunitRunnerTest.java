@@ -16,7 +16,7 @@ import io.cucumber.junit.CucumberOptions;
         		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
              
                 glue = {"com.crm.NeoGrowthstepDef"},
-               tags="@sanity",
+             //tags="@Smoke2",
                monochrome=true,
         		plugin= {"pretty",
         				"html:target/cucumber.html",
