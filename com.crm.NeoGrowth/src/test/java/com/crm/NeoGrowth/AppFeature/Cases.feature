@@ -1,4 +1,4 @@
-@cases
+ @filter
 Feature: Cases Module 
 
  Background: Background Feature
@@ -6,7 +6,7 @@ Feature: Cases Module
   Given User enters Username and password and click on the Login Btn
    When Mouse move over all sticky menu
    
-   
+  
    Scenario: Validate Edited details should be update in cases page, user edit details and click on save button 
     When click on the cases module link
     Then View Cases Page Should be Display
@@ -20,3 +20,35 @@ Feature: Cases Module
     Examples:
    |Tatdaysvalue|Casecategory|Casesubcategory                |Casedetails|
    |9865432     |Legal       |Withdrawal of Legal/Arbitration|Loan Closed|
+   
+   
+ 
+   Scenario: Verify the Advance Filter tab when user Click on Filter Icon
+   When Click on CasesModule Link
+   When Click on the Filter Icon
+   Then Advance Filter Tab Should be Display
+   And Click on the AdvanceFilter button
+   And Enter the Value in NumberTF <Number>
+   And Enter the value in SubjectTF <Subject>
+   And Select the value from Statusbox <Status> 
+   And Select the value from AssignedtoBox <Assignedto> 
+   And User Scrolldown and Enter the value in CaseownerTF <Caseowner>
+   And Select the value in PriorityBox <Priority>
+   And Enter the value in AppidTF <Appid>
+   And Enter the  value in NameTF <Name>
+   And Enter the value in EmailidTF <Emailid>
+   And Enter the value in ContactTF <Contact>
+   And Enter the value in LocationTF <Location>
+   And User Scrolldown and Select the value in TypeBox <Type>
+   And User Scrolldown Enter the value in AgeTF <Age>
+   And Select the value in CasecategoryBox <Casecategory>
+   When User ScrollDown and Click on Save button 
+   Then Search Result should be display 
+   
+   Examples:
+   |Number|Subject                                |Status|Assignedto|Caseowner|Priority|Appid|Name|Emailid|Contact|Location|Type|Age|Casecategory|
+   |342557|TDS Refund – 111111 - DONT USE THIS- PF|In_progress|Priyanka Mukund Khairnar|Priyanka Mukund Khairnar|P1|123123|ROHAAN SHARMA|khataljay@gmail.com|9484646494|bhubaneswar|request|0|legal|
+   
+
+   
+  
