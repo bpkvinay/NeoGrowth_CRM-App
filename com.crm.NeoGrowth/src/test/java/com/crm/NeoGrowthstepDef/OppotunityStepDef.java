@@ -6,14 +6,10 @@ import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
-
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
 import com.crm.POM.LoginPagetest;
 import com.crm.POM.OpportunityPagetest;
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -51,7 +47,7 @@ public class OppotunityStepDef extends Driver{
 	public void opportunity_home_page_should_be_visible() throws EncryptedDocumentException, IOException {
 		 System.out.println(driver.getTitle());
 		 String ActualTitle =dr.getexceldata("Titles",2, 1);
-	    Assert.assertEquals(driver.getTitle(),ActualTitle);
+	   org.junit.Assert.assertEquals(driver.getTitle(), ActualTitle);
 	
 	}
 	
@@ -64,8 +60,8 @@ public class OppotunityStepDef extends Driver{
 
 	    @Then("user should lands to opportunity details page")
 	    public void user_should_lands_to_opportunity_details_page() throws EncryptedDocumentException, IOException {
-	        //String ActualTitle = dr.getexceldata("Titles",2, 1);
-	        //Assert.assertEquals(driver.getTitle(),ActualTitle);
+	        String ActualTitle = dr.getexceldata("Titles",2, 1);
+org.junit.Assert.assertEquals(driver.getTitle(),ActualTitle);
 	    }
 
 	   @When("^User Should select one opportunity$")
