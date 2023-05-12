@@ -8,8 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
 
-public class Leadspage extends Driver{
+public class LeadsEditspage extends Driver{
 	
+	private static final String String = null;
+
 	SeleniumUtility sel=new SeleniumUtility();
 	
 	@FindBy(xpath="(//a[text()='Leads'])[3]")
@@ -54,9 +56,28 @@ public class Leadspage extends Driver{
 	@FindBy(xpath="(//input[@type='submit'])[2]")
 	private WebElement Savebtn;
 	
+	@FindBy(xpath=("//table/tbody/tr[1]/td[3]/b"))
+	private WebElement LeadsNameLink;
 	
+	@FindBy(xpath="//div[normalize-space()='First Name Should Contain Alphabets Only!']")
+	private WebElement FirstNameTFErromessage;
 	
-	public Leadspage(WebDriver driver) {
+	@FindBy(xpath="//div[contains(text(),'Last Name Should Contain Alphabets Only!')]")
+	private WebElement LastNameTFErrormessage;
+	
+	@FindBy(xpath="//input[@id='phone_mobile']")
+	private WebElement MobileNumberTF;
+	
+	@FindBy(xpath="//div[normalize-space()='Please Enter Valid 10 Digit Mobile Number!']")
+	private WebElement MobilenumberErrormessage;
+	
+	@FindBy(xpath="//h2[@class='module-title-text']")
+	private WebElement editpagetitle;
+	
+	@FindBy(xpath="//span[@id='first_name']")
+	private WebElement updatedFirstnameTF;
+	
+	public LeadsEditspage(WebDriver driver) {
 		this.driver = driver;
 	PageFactory.initElements(driver, this);
 	}
@@ -67,95 +88,87 @@ public class Leadspage extends Driver{
 		Leadslnk.click();
 		
 	}
-
-
-
 	public void clickpencillnk() {
 		 pencillink.click();
 	}
-
-
-
 	public void getPrefixNameDrop(String prefix) {
 		sel.selectByvalue(PrefixNameDrop,prefix);
 		
 	}
-
-
-
 	public void getCCstatusDropdown(String ccstatusvalue) {
 		sel.selectByvalue(CCstatusDropdown, ccstatusvalue);
 	}
-
-
-
 	public void EnterFirstnameTF(String firstnamevalue) {
 		FirstnameTF.clear();
 		FirstnameTF.sendKeys(firstnamevalue);
 	}
-
-
-
 	public void EnterLastnameTF(String lastnamevalue) {
 		LastnameTF.clear();
 		LastnameTF.sendKeys(lastnamevalue);
 	}
-
-
-
 	public void ClickCCSubDipostionDropdown(String CCsubvalue) {
 		sel.selectByvalue(CCSubDipostionDropdown, CCsubvalue);
 	}
-
-
-
 	public void ClickCCDispostiondropdown(String CCDispostionvalue ) {
 		sel.selectByvalue(CCDispostiondropdown, CCDispostionvalue);
 	}
-
-
-
 	public void ClickcamOpportunitystatus(String oppstatusvalue ) {
 	    sel.selectByvalue(Opportunitystatus, oppstatusvalue);
 	}
-
-
-
-	public void EnterRemarkTF(String value) {
+    public void EnterRemarkTF(String value) {
 		remarkTF.clear();
 		remarkTF.sendKeys(value);
 	}
-
-
-
 	public void ClickSubDispositionDropdown(String subdispostionvalue) {
 		sel.selectByvalue(SubDispositionDropdown, subdispostionvalue);
 	}
-
-
-
 	public void getCamoppSubStatus(String camoppstatus) {
 		sel.selectByvalue(CamoppSubStatus, camoppstatus);
 	}
-
-
-
 	public void getAgentNameTF(String agentnamevalue ) {
 		sel.selectByvalue(agentNameTF, agentnamevalue);
 	}
-	
 	public void clicksavebutton() {
 		Savebtn.click();
 	}
-	
 	public void Scrollbtn() {
 		sel.scrollToElement(Savebtn, "SaveButton");
 		Savebtn.click();
 	}
 	
+	public void EnterMobileNumber(String number) {
+		MobileNumberTF.clear();
+		MobileNumberTF.sendKeys(number);
+	}
+	
 	public void getoption() {
 		sel.togetoptionspresentindropdown(CCDispostiondropdown);
-//sel.togetoptionspresentindropdown(CamoppSubStatus);
+}
+	public void ClickLeadsNameLink() {
+		LeadsNameLink.click();
+	}
+     public String getactualFirstnameTFerrormessage() {
+    	 String actualmessage = FirstNameTFErromessage.getText();
+		return actualmessage;
+     }
+    
+     public String getactualLastnameTFerrormessage() {
+    	 String actualmessage = LastNameTFErrormessage.getText();
+		return actualmessage;
+     }  
+     
+     public String getactualmobilenumberTFerrormessage() {
+    	 String actualmessage = MobilenumberErrormessage.getText();
+    	 return actualmessage;
+     }
+     
+     public String geteditpagetext() {
+    	 return editpagetitle.getText();
+    	 
+     }
+     
+     public String getupdatedfirstnameTF() {
+    	 return updatedFirstnameTF.getText();
+     }
 }
 
-}

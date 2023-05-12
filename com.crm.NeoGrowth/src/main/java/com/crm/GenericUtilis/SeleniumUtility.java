@@ -14,29 +14,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtility extends Driver {
-	/**
-	 * @author Pavan.Joshi
-	 * @return
-	 */
-	
 	public JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
 	
-	public String getCurrentTitle() {
-        try {
-            String title = driver.getCurrentUrl();
-            System.out.println("Title is : " + title);
-            return title;
-        } catch (Exception e) {
-            System.out.println("Unable to get title");
-            return "Unable to get title";
-        }
-    }
-        
+	
 	/**
-	 * @author Pavan.Joshi
+	 * This method is used to getCurrentURL 
 	 * @return
+	 * @author Pavan.Joshi
 	 */
-	 public String getCurrentURL() {
+	public String getCurrentURL() {
 	        try {
 	            String currentURL = driver.getCurrentUrl();
 	            System.out.println("Current URL is : " + currentURL);
@@ -48,6 +34,7 @@ public class SeleniumUtility extends Driver {
 	    }
 	 
 	 /**
+	  * This method is used to for Synchronization between application and Browser by using ExplicityWait
 	  * @author Pavan.Joshi
 	  * @param xpath
 	  * @param duration
@@ -61,115 +48,24 @@ public class SeleniumUtility extends Driver {
 	        }
 	    }
 	 
-         /**
-          * @author Pavan.Joshi
-          * @param locator
-          * @return
-          */
-	 public WebElement findElementByAnyLocator(String locator) {
-	        WebElement element = null;
-	        try {
-	            if (driver.findElement(By.id(locator)).isDisplayed()) {
-	                element = driver.findElement(By.id(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.name(locator)).isDisplayed()) {
-	                element = driver.findElement(By.name(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.className(locator)).isDisplayed()) {
-	                element = driver.findElement(By.className(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.linkText(locator)).isDisplayed()) {
-	                element = driver.findElement(By.linkText(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.cssSelector(locator)).isDisplayed()) {
-	                element = driver.findElement(By.cssSelector(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.partialLinkText(locator)).isDisplayed()) {
-	                element = driver.findElement(By.partialLinkText(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	        }
-	        try {
-	            if (driver.findElement(By.xpath(locator)).isDisplayed()) {
-	                element = driver.findElement(By.xpath(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-
-	        }
-	        try {
-	            if (driver.findElement(By.tagName(locator)).isDisplayed()) {
-	                element = driver.findElement(By.tagName(locator));
-	                return element;
-	            }
-	        } catch (Exception e) {
-	            Assert.fail("Element not found | Error - " + e);
-	            return null;
-	        }
-	        if (element == null) {
-	            Assert.fail("\n Locator : " + locator + " ************** Not Found");
-	        }
-	        return null;
-	    }
-	 
+     
        /**
-        */
+       * This Method is used to Mousehover Actions
+       * @param element
+       * @author Pavan.Joshi
+       */
 	 public void moveToElement(WebElement element) {
 	        try {
-	           // WebElement element = driver.findElement(By.xpath(xpath));
 	            Actions act=new Actions(driver);
 	            act.moveToElement(element).click().perform();
 	        } catch (Exception e) {
 	            Assert.fail("Element not found " + element + "|Error - " + e);
 	        }
 	    }
-
-     /**
-      * @author Pavan.Joshi
-      * @param element
-      */
-	 public void clickElement(WebElement element) {
-	        try {
-	            element.click();
-	        } catch (Exception e) {
-	            Assert.fail("Element not found :" + element + "|Error - " + e);
-	        }
-	    }
-   
-	 /**
-	  * @author Pavan.Joshi
-	  * @param classname
-	  */
-	 public void clickByClass(String classname) {
-	        try {
-	            driver.findElement(By.className(classname)).click();
-	        } catch (Exception e) {
-	            Assert.fail("element not found :" + classname + "|Error - " + e);
-	        }
-	    }
+ 
 
 	 /**
+	  * 
 	  * @author Vinay.Gaonkar
 	  * @param xpath
 	  * @return
@@ -194,6 +90,7 @@ public class SeleniumUtility extends Driver {
 	        
 	        
 	 /**
+	  * This method is used ClickByText Present in DropDownOption
 	  * @author Vinay.Gaonkar
 	  * @param element
 	  * @param  to get 
@@ -207,6 +104,14 @@ public class SeleniumUtility extends Driver {
 	    		}
 	        }
 	        
+	        
+	        /**
+	         * This method is used ClickByValue Present in DropDownOption
+	         * @param element
+	         * @param value
+	         * @author Vinay.Gaonkar
+	         */
+	        
 	    		public synchronized void selectByvalue(WebElement element, String value) {
 		    		try {
 		    			Select selecvalue=new Select(element);
@@ -214,11 +119,17 @@ public class SeleniumUtility extends Driver {
 		    		} catch (Exception e) {
 		    			Assert.fail("Unable to select  " + value);
 		    		}
+		    		}
+	    		
+	    		
+	    		/**
+	    		 * This method is used ClickByIndex Present in DropDownOption
+	    		 * @param element
+	    		 * @param index
+	    		 * @author Vinay.Gaonkar
+	    		 */
 		    		
-	    		
-	    	}
-	    		
-		    		public synchronized void selectByindex(WebElement element, int index) {
+	    		public synchronized void selectByindex(WebElement element, int index) {
 			    		try {
 			    			Select selecvalue=new Select(element);
 			    			selecvalue.selectByIndex(index);
@@ -227,6 +138,12 @@ public class SeleniumUtility extends Driver {
 			    		}	}
 	    		
 			    		
+	    		/**
+	    		 * This is method is clickCheckbox and also verify the box is selected or not
+	    		 * @param element
+	    		 * @param elementname
+	    		 * @author Pavan.Joshi
+	    		 */
 			    		public void clickCheckBox(WebElement element, String elementname) {
 
 			    			if (element.isSelected()) {
@@ -239,6 +156,7 @@ public class SeleniumUtility extends Driver {
 			    			
 			    		
 			    		/**
+			    		 * This method is used to Scroll till element address find
 			    		 * @author Vinay.Gaonkar
 			    		 * @param element
 			    		 * @param elementName
@@ -251,6 +169,14 @@ public class SeleniumUtility extends Driver {
 			    				}		
 			    			}
 			    				
+			    			
+			    			
+			    			
+			    			/**
+			    			 * This method is used to Options present in dropdown
+			    			 * @param element
+			    			 * @author Vinay.Gaonkar
+			    			 */
 			    				
 			    				public void togetoptionspresentindropdown(WebElement element) {
 			    					
@@ -261,14 +187,40 @@ public class SeleniumUtility extends Driver {
 			    						System.out.println(b.getText());
 			    					
 			    				}}
+			    				
+			    				
+			    				/**
+			    				 * This method is used to Click Ok Button from AlertPopup
+			    				 * @author Pavan.Joshi
+			    				 */
 									public void Alertpopupclickokbutton() {
 										driver.switchTo().alert().accept();
 									}
 									
+									
+									/**
+									 * This method is used to Click Cancel Button from AlertPopup
+									 * @author Pavan.Joshi
+									 */
 									public void AlertpopupclickCancelbutton() {
 										driver.switchTo().alert().dismiss();
 									}
 			    				
+						public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton) {
+							calenderbutton.click();
+							while(true) 
+							{
+								String text = Monthyear.getText();
+								if(text.equals(monthyear)) {
+									break;
+								}
+								else 
+								{
+									forwardbutton.click();
+								}
+							}
+							//day.click();
+						}
  				}
 
        

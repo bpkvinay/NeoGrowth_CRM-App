@@ -1,11 +1,10 @@
 
-Feature: opportunity
+Feature: Opportunity Feature
  
   Background: Background Feature
-  
   Given User enters Username and password and click on the Login Btn
-   When Mouse move over all sticky menu
-    And click on the opportunity module link
+  When Mouse move over all sticky menu
+  And click on the opportunity module link
     
 
  
@@ -32,7 +31,7 @@ Feature: opportunity
      
      
       @editpage
-        #Edit page mandatory fields end to end test
+        
         Scenario: verify opportunity User Edit Page
         When click on the Edit icon
         Then User edit page should be displayed
