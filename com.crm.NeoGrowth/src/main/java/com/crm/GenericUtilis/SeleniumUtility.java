@@ -179,64 +179,36 @@ public class SeleniumUtility extends Driver {
 										driver.switchTo().alert().dismiss();
 									}
 			    				
- 	
-		/**
-		 * @author Pavan.Joshi
-		 * This method Used to handle the windows and child windows
-		 * 
-		 */
-      public void windowHandle() {
-	    String parent=driver.getWindowHandle();
-        Set<String>s=driver.getWindowHandles();
-          Iterator<String> I1= s.iterator();{
-         while(I1.hasNext())
-		{
-		String child_window=I1.next();
-        if(!parent.equals(child_window))
-		{
-		driver.switchTo().window(child_window);
-        System.out.println(driver.switchTo().window(child_window).getTitle());
-		}
-		}
-}}
-		
-//	    /**
-//	     * @author Pavan.Joshi
-//	     * @param dataTable
-//	     * @param xpath
-//	     */
-//      public void compare2Lists(DataTable dataTable, String xpath) {
-//        List<String> fieldsExp = dataTable.asList();
-//       List<String> fieldsAct = driver.findElements(By.xpath(xpath)).
-//                stream().map(element -> element.getText().trim()).toList();
-//        System.out.println("Fields size actual"+fieldsAct.size());
-//        System.out.println("Fields size expected"+fieldsExp.size());
-//        System.out.println("Fields actual"+ fieldsAct);
-//        System.out.println("Fields expected"+ fieldsExp);
-//        Assert.assertEquals(fieldsExp, fieldsAct);
-//    }
-         
-      /**
-       * @author Pavan.Joshi
-       * @param calendarpopUpXpath
-       * @param nextButtonXpath
-       */
-      public void clickdatemonthyeartag(String calendarpopUpXpath,String nextButtonXpath,String monthYearXpath,String monthYear,String DaydynamicXpath) {
-    	 boolean isDatefound=false;
-    	 driver.findElement(By.xpath(calendarpopUpXpath)).click();
-    	 WebElement nextButton = driver.findElement(By.xpath(nextButtonXpath));
-    	 while (!isDatefound) {
-			WebElement monthyearElement = driver.findElement(By.xpath(monthYearXpath));
-			if(monthyearElement.getText().equalsIgnoreCase(monthYear)) {
-				driver.findElement(By.xpath(DaydynamicXpath)).click();
-				isDatefound=true;
-			}else {
-				nextButton.click();
-			}
-		}
-    	  
-    	  
-      }
+  
+									public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton1) {
+										calenderbutton.click();
+										while(true) 
+										{
+											String text = Monthyear.getText();
+											if(text.equals(monthyear)) {
+												break;
+											}
+											else 
+											{
+												forwardbutton1.click();
+											}
+										}
+										//day.click();
+									}
+ 				}
+
+       
 
 
-      }
+
+
+
+
+
+
+
+
+
+
+
+
