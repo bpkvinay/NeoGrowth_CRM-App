@@ -32,7 +32,7 @@ Driver dr = new Driver();
 	 
 	  @Then("^View Cases Page Should be Display$")
 	    public void view_cases_page_should_be_display() throws EncryptedDocumentException, IOException {
-		  String Actual = dr.getexceldata("Titles", 4, 1);
+		  String Actual = dr.getexceldata("Titles", 5, 1);
 		  String Expected = driver.getTitle();
 		  Assert.assertEquals(Expected, Actual);
 		  	  
@@ -92,7 +92,7 @@ Driver dr = new Driver();
 
 	    @Then("^Advance Filter Tab Should be Display$")
 	    public void advance_filter_tab_should_be_display() throws EncryptedDocumentException, IOException {
-	    	String Actual = dr.getexceldata("Titles", 5, 1);
+	    	String Actual = dr.getexceldata("Titles", 6, 1);
 	    	String Expected = driver.getTitle();
 	    	Assert.assertEquals(Expected, Actual);
 	    	 

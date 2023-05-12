@@ -206,21 +206,21 @@ public class SeleniumUtility extends Driver {
 										driver.switchTo().alert().dismiss();
 									}
 			    				
-						public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton) {
-							calenderbutton.click();
-							while(true) 
-							{
-								String text = Monthyear.getText();
-								if(text.equals(monthyear)) {
-									break;
-								}
-								else 
-								{
-									forwardbutton.click();
-								}
-							}
-							//day.click();
-						}
+									public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton1) {
+										calenderbutton.click();
+										while(true) 
+										{
+											String text = Monthyear.getText();
+											if(text.equals(monthyear)) {
+												break;
+											}
+											else 
+											{
+												forwardbutton1.click();
+											}
+										}
+										//day.click();
+									}
  				}
 
        
