@@ -1,8 +1,13 @@
 package com.crm.GenericUtilis;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -13,16 +18,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.datatable.DataTable;
+
 public class SeleniumUtility extends Driver {
+	/**
+	 * @author Pavan.Joshi
+	 * @return
+	 */
+	
 	public JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
 	
-	
+	     
 	/**
-	 * This method is used to getCurrentURL 
-	 * @return
 	 * @author Pavan.Joshi
+	 * @return
 	 */
-	public String getCurrentURL() {
+	 public String getCurrentURL() {
 	        try {
 	            String currentURL = driver.getCurrentUrl();
 	            System.out.println("Current URL is : " + currentURL);
@@ -34,7 +45,6 @@ public class SeleniumUtility extends Driver {
 	    }
 	 
 	 /**
-	  * This method is used to for Synchronization between application and Browser by using ExplicityWait
 	  * @author Pavan.Joshi
 	  * @param xpath
 	  * @param duration
@@ -48,49 +58,51 @@ public class SeleniumUtility extends Driver {
 	        }
 	    }
 	 
-     
-       /**
-       * This Method is used to Mousehover Actions
-       * @param element
+        
+	 
+      /**
        * @author Pavan.Joshi
+       * @param element
        */
 	 public void moveToElement(WebElement element) {
 	        try {
+	           // WebElement element = driver.findElement(By.xpath(xpath));
 	            Actions act=new Actions(driver);
 	            act.moveToElement(element).click().perform();
 	        } catch (Exception e) {
 	            Assert.fail("Element not found " + element + "|Error - " + e);
 	        }
 	    }
- 
+	 
 
-	 /**
-	  * 
-	  * @author Vinay.Gaonkar
-	  * @param xpath
-	  * @return
-	  */
-	/* public List<String> getAllElementsToList(String xpath) {
+     /**
+      * @author Pavan.Joshi
+      * @param element
+      */
+	 public void clickElement(WebElement element) {
 	        try {
-	        	ArrayList<String> AllElementsText=new ArrayList<String>();
-	            List<WebElement> AllElements = driver.findElements(By.xpath(xpath));
-	            System.out.println("Size of all elements" + AllElements.size());
-	            for (int i = 0; i < AllElements.size(); i++) {
-	                String aa = AllElements.get(i).getText();
-	                AllElementsText.add(aa);
-	            }
-	            System.out.println("Size of getAllElements ArrayList:" + AllElementsText.size());
-	            return AllElementsText;
+	            element.click();
 	        } catch (Exception e) {
-	            System.out.println("Element not found | Error - " + e);
-	            ArrayList<String> AllElement1 = new ArrayList<String>();
-	            AllElement1.add("Unable to get text for all options");
-	            return AllElement1;
-	        }*/
+	            Assert.fail("Element not found :" + element + "|Error - " + e);
+	        }
+	    }
+   
+	 /**
+	  * @author Pavan.Joshi
+	  * @param classname
+	  */
+	 public void clickByClass(String classname) {
+	        try {
+	            driver.findElement(By.className(classname)).click();
+	        } catch (Exception e) {
+	            Assert.fail("element not found :" + classname + "|Error - " + e);
+	        }
+	    }
+
+	 
 	        
 	        
 	 /**
-	  * This method is used ClickByText Present in DropDownOption
 	  * @author Vinay.Gaonkar
 	  * @param element
 	  * @param  to get 
@@ -104,14 +116,6 @@ public class SeleniumUtility extends Driver {
 	    		}
 	        }
 	        
-	        
-	        /**
-	         * This method is used ClickByValue Present in DropDownOption
-	         * @param element
-	         * @param value
-	         * @author Vinay.Gaonkar
-	         */
-	        
 	    		public synchronized void selectByvalue(WebElement element, String value) {
 		    		try {
 		    			Select selecvalue=new Select(element);
@@ -119,17 +123,11 @@ public class SeleniumUtility extends Driver {
 		    		} catch (Exception e) {
 		    			Assert.fail("Unable to select  " + value);
 		    		}
-		    		}
-	    		
-	    		
-	    		/**
-	    		 * This method is used ClickByIndex Present in DropDownOption
-	    		 * @param element
-	    		 * @param index
-	    		 * @author Vinay.Gaonkar
-	    		 */
 		    		
-	    		public synchronized void selectByindex(WebElement element, int index) {
+	    		
+	    	}
+	    		
+		    		public synchronized void selectByindex(WebElement element, int index) {
 			    		try {
 			    			Select selecvalue=new Select(element);
 			    			selecvalue.selectByIndex(index);
@@ -138,12 +136,6 @@ public class SeleniumUtility extends Driver {
 			    		}	}
 	    		
 			    		
-	    		/**
-	    		 * This is method is clickCheckbox and also verify the box is selected or not
-	    		 * @param element
-	    		 * @param elementname
-	    		 * @author Pavan.Joshi
-	    		 */
 			    		public void clickCheckBox(WebElement element, String elementname) {
 
 			    			if (element.isSelected()) {
@@ -156,7 +148,6 @@ public class SeleniumUtility extends Driver {
 			    			
 			    		
 			    		/**
-			    		 * This method is used to Scroll till element address find
 			    		 * @author Vinay.Gaonkar
 			    		 * @param element
 			    		 * @param elementName
@@ -169,14 +160,6 @@ public class SeleniumUtility extends Driver {
 			    				}		
 			    			}
 			    				
-			    			
-			    			
-			    			
-			    			/**
-			    			 * This method is used to Options present in dropdown
-			    			 * @param element
-			    			 * @author Vinay.Gaonkar
-			    			 */
 			    				
 			    				public void togetoptionspresentindropdown(WebElement element) {
 			    					
@@ -187,43 +170,62 @@ public class SeleniumUtility extends Driver {
 			    						System.out.println(b.getText());
 			    					
 			    				}}
-			    				
-			    				
-			    				/**
-			    				 * This method is used to Click Ok Button from AlertPopup
-			    				 * @author Pavan.Joshi
-			    				 */
+
 									public void Alertpopupclickokbutton() {
 										driver.switchTo().alert().accept();
 									}
 									
-									
-									/**
-									 * This method is used to Click Cancel Button from AlertPopup
-									 * @author Pavan.Joshi
-									 */
 									public void AlertpopupclickCancelbutton() {
 										driver.switchTo().alert().dismiss();
 									}
 			    				
-						public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton) {
-							calenderbutton.click();
-							while(true) 
-							{
-								String text = Monthyear.getText();
-								if(text.equals(monthyear)) {
-									break;
-								}
-								else 
-								{
-									forwardbutton.click();
-								}
-							}
-							//day.click();
-						}
- 				}
+  
+									public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton1) {
+										calenderbutton.click();
+										while(true) 
+										{
+											String text = Monthyear.getText();
+											if(text.equals(monthyear)) {
+												break;
+											}
+											else 
+											{
+												forwardbutton1.click();
+												{
+										}
+											}}
+										//day.click();
+											}
+										
+										/**
+										 * @author Pavan.Joshi
+										 * This method Used to handle the windows and child windows
+										 * 
+										 */
+										public void windowHandle() {
+										String parent=driver.getWindowHandle();
+										Set<String>s=driver.getWindowHandles();
+										  Iterator<String> I1= s.iterator();{
+										 while(I1.hasNext())
+										{
+										String child_window=I1.next();
+										if(!parent.equals(child_window))
+										{
+										driver.switchTo().window(child_window);
+										System.out.println(driver.switchTo().window(child_window).getTitle());
+										}
+										}
+										  }
+
+
+									}
+									}
+ 				
+
+
 
        
+
 
 
 

@@ -19,12 +19,11 @@ Feature: Cases Module
     Examples:
    |Tatdaysvalue|Casecategory|Casesubcategory|Casedetails|
    |1234567     |Legal       |Withdrawal of Legal/Arbitration|Loan Closed|
-   
+    
   @filter
    Scenario: Verify the Search Result when user Click on Filter Icon (Advance Filter Tab)
    When Click on CasesModule Link
    When Click on the Filter Icon
-   Then Advance FilterTab Should be Display
    And Click on the AdvanceFilter button
    And Enter the Value in NumberTF <Number>
    And Enter the value in SubjectTF <Subject>
@@ -45,10 +44,10 @@ Feature: Cases Module
    Then Search Result should be display <SearchResult>
    
    Examples:
-   |Number|Subject|Status|Assignedto|Caseowner|Priority|Appid|Name|Emailid|Contact|Location|Type|Age|Casecategory|Emailsource|SearchResult|
-   |342557|TDS Refund – 111111 - DONT USE THIS- PF|In_progress|Priyanka Mukund Khairnar|Priyanka Mukund Khairnar|P1|123123|ROHAAN SHARMA|khataljay@gmail.com|9484646494|bhubaneswar|request|0|legal|helpdesk@neogrowth.in|ROHAAN SHARMA|
-   
+
+   |Number|Subject                                |Status     |Assignedto              |Caseowner               |Priority|Appid |Name         |Emailid            |Contact   |Location   |Type   |Age|Casecategory|Emailsource          |SearchResult|
+   |342557|TDS Refund – 111111 - DONT USE THIS- PF|In_progress|Priyanka Mukund Khairnar|Priyanka Mukund Khairnar|P1      |123123|ROHAAN SHARMA|khataljay@gmail.com|9484646494|bhubaneswar|request|0  |legal       |helpdesk@neogrowth.in|ROHAAN SHARMA|
   
-   
+  
    
   

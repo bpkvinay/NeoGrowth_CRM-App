@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
 
-public class CasesFilterPage extends Driver {
+public class CasesFilterPage extends Driver{
 	
-	SeleniumUtility su = new SeleniumUtility();
+    SeleniumUtility su = new SeleniumUtility();
 	
 	@FindBy(xpath = "(//a[text()='Cases'])[3]")
 	private WebElement CasesModuleLink;
@@ -20,6 +20,9 @@ public class CasesFilterPage extends Driver {
 	
 	@FindBy (xpath = "//a[text()='Advanced Filter']")
 	private WebElement AdvanceFilterBtn;
+	
+	@FindBy(xpath="(//a[text()='Quick Filter'])[1]")
+	private WebElement quickfiltertab;
 	
 	@FindBy (xpath = "//input[@id='case_number_advanced']")
 	private WebElement NumberTF;
@@ -68,8 +71,8 @@ public class CasesFilterPage extends Driver {
 	
 	@FindBy (xpath = "//input[@id='search_form_submit_advanced']")
 	private WebElement Savebutton;
-	
-	@FindBy(xpath = "//table/tbody/tr[1]/td[7]")
+
+	@FindBy(xpath = "//table/tbody/tr[1]/td[6]")
 	private WebElement SearchResult;
 		
 	public CasesFilterPage(WebDriver driver) {
@@ -88,15 +91,28 @@ public class CasesFilterPage extends Driver {
 	public WebElement ClickAdvanceFilterBtn() {
 		return AdvanceFilterBtn;
 	}
+	
+	public void SwitchtoTab() {
+		if (!quickfiltertab.getText().equalsIgnoreCase("Advanced Filter")){
+			AdvanceFilterBtn.click();	
+		}
+		else {
+			
+			quickfiltertab.click();
+   }
+	}
+	
 	public void EnterNumberTF(String CaseNumber) {
+		NumberTF.clear();
 		NumberTF.sendKeys(CaseNumber);	
 	}
 
 	public void EnterSubjectTF(String CaseSubject) {
+		SubjectTF.clear();
 		SubjectTF.sendKeys(CaseSubject);	
 	}
 
-	public void SelectStatusBox(String Status) {
+	public void SelectStatusBox(String Status) {	
 		su.selectByvalue(StatusBox, Status);		
 	}
 
@@ -104,8 +120,9 @@ public class CasesFilterPage extends Driver {
 		su.selectByText(AssignedtoBox, Assignedto);	
 	}
 
-	public void EnterCaseownerTF(String Caseowner) {
-		CaseownerTF.sendKeys(Caseowner);	
+	public void EnterCaseownerTF(String Caseowner) {	
+		CaseownerTF.clear();
+		CaseownerTF.sendKeys(Caseowner);
 	}
 
 	public void SelectPriorityBox(String Priority) {
@@ -113,18 +130,22 @@ public class CasesFilterPage extends Driver {
 	}
 
 	public void EnterAppidTF(String Appid) {
+		AppidTF.clear();
 		AppidTF.sendKeys(Appid);
 	}
 
 	public void EnterNameTF(String Name) {
+		NameTF.clear();
 		NameTF.sendKeys(Name);	
 	}
 
 	public void EnterEmailidTF(String Emailid) {
+		EmailidTF.clear();
 		EmailidTF.sendKeys(Emailid);	
 	}
 
 	public void EnterContactnumberTF(String Contact) {
+		ContactnumberTF.clear();
 		ContactnumberTF.sendKeys(Contact);	
 	}
 
@@ -137,6 +158,7 @@ public class CasesFilterPage extends Driver {
 	}
 
 	public void EnterAgeTF(String Age) {
+		AgeTF.clear();
 		AgeTF.sendKeys(Age);	
 	}
 
@@ -145,7 +167,6 @@ public class CasesFilterPage extends Driver {
 	}
     
 	public void SelectEmailsourceBox(String Emailsource) {
-		
 	    su.selectByvalue(EmailsourceBox, Emailsource);
     }
 

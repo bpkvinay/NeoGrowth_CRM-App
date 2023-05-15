@@ -1,5 +1,9 @@
 package com.crm.POM;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,6 +11,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
+
+import io.cucumber.datatable.DataTable;
+import junit.framework.Assert;
+import lombok.experimental.PackagePrivate;
 
 public class OpportunityPagetest extends Driver{
 	
@@ -42,11 +50,61 @@ public class OpportunityPagetest extends Driver{
 	@FindBy(xpath = "//select[@name='pickup_appointment_city_c']")
 	private WebElement pickupcityDD;
 	
+	@FindBy(xpath = "//select[@id='cc_status_c']")
+	private WebElement CCstatusDD;
+	
+	@FindBy(xpath = "//select[@id='eos_disposition_c']")
+	private WebElement DispositionDD;
+	
+	@FindBy(xpath = "//select[@id='eos_opportunity_status_c']")
+	private WebElement opportunitystatusDD;
+	
+	@FindBy(xpath = "//select[@id='eos_sub_disposition_c']")
+	private WebElement SubdispositionDD;
+	
+	@FindBy(xpath = "//select[@id='eos_sub_status_c']")
+	private WebElement SubopportunityDD;
+	
 	@FindBy(xpath = "(//input[@title='Save'])[2]")
 	private WebElement saveBtn;
 	
 	@FindBy(xpath = "//table[1]/tbody[1]/tr[1]/td[2]/a[1]")
 	private WebElement Editicon;
+	
+	//basic module caledarpopup xpaths
+	@FindBy(xpath = "//button[@id='pickup_appointment_date_c_trigger']")
+	private WebElement calendaricon;
+	//monthyear tag xpath
+	@FindBy(xpath = "(//a[@class='calna'])[2]")
+	private WebElement MonthyearTag;
+	//Next Button Xpath
+	@FindBy(xpath = "(//a[@class=\"calnavright\"])[2]")
+	private WebElement NextButton;
+	
+	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_hours']")
+	private WebElement HoursDD;
+	
+	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_minutes']")
+	private WebElement MinuteDD;
+	
+	@FindBy(xpath = "//input[@id='pickup_appointment_address_c']")
+	private WebElement pickupaddressTF;
+	
+	@FindBy(xpath = "//select[@id='servicable_c']")
+	private WebElement servicableDD;
+	
+	@FindBy(xpath = "//textarea[@id='pickup_appointment_feedback_c']")
+	private WebElement pickupfeedbackTF;
+	
+	@FindBy(xpath = "//button[@id='btn_assigned_user_name']")
+	private WebElement selectUserBtn;
+	
+	@FindBy(xpath = "//span[@class='suitepicon suitepicon-action-clear']")
+	private WebElement ClearUserBtn;
+	
+	//@FindBy(xpath = "")
+	
+	
 	
 	
 	
@@ -54,6 +112,8 @@ public class OpportunityPagetest extends Driver{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	
 
 	public WebElement getAllStickymenu() {
 		return AllStickymenu;
@@ -109,4 +169,39 @@ public class OpportunityPagetest extends Driver{
 	public void getEditicon() {
 		Editicon.click();
 	}
+
+	public void getCCstatusDD(String CCstatus) {
+		 sp.selectByvalue(CCstatusDD,CCstatus);
+	}
+
+	
+
+	public void getDispositionDD(String Disposition) {
+		sp.selectByvalue(DispositionDD,Disposition ); 
+	}
+
+	
+
+	public void getOpportunitystatusDD(String oppstatus) {
+		sp.selectByvalue(opportunitystatusDD,oppstatus); 
+	}
+
+	
+
+	public void getSubdispositionDD(String subdisposition ) {
+		sp.selectByvalue(SubdispositionDD, subdisposition); 
+	}
+
+	
+
+	public void getSubopportunityDD(String subopportunity) {
+		sp.selectByvalue(SubopportunityDD, subopportunity);
+	}
+
+	
+	
+
+	
+	
+	
 }
