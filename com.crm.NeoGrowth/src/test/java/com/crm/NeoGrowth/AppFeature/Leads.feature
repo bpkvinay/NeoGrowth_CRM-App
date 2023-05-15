@@ -138,7 +138,30 @@ Feature: Leads Testcases
   #|Subject1|monthyear|date|
   #|hajs|JUNE 2024|25|
   
-  
+Scenario Outline: Verify the logcall task should be created when user click on logcall button from create task dropdown
+   When click on LeadsNameLink
+   Then Leadsdetailspage should be display
+   And scroll down and click activities submodule
+   And click Creattask dropdown
+   And click on Log Call Option
+   And Enter subject in <subject1> TF in Logcall Page
+   And select monthyear from calender<monthyear> in Logcall page
+   And Click StartTime DropDown and select <StartHour> in logcall page 
+   And Click StartMinute DropDown and select <StartMinute> in logcall page 
+   And enter <duration> in duration TF in logcall page 
+   And Enter <minutes> in Duration Dropdown in logcall page 
+   And Select <Status1> and <Status2> from Status Dropdown in logcall page 
+   
+   Examples:
+   |subject1|monthyear|StartHour|StartMinute|duration|minutes|Status1|Status2|
+   |schedule logcall|july 2024|10|30|3|30|Outbound|Planned|
+   
+   
+   
+   
+
+         
+ 
   
   
   

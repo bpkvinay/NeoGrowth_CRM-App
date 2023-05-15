@@ -72,6 +72,11 @@ public class LeadsDetailsPage extends Driver{
 	@FindBy(xpath="//a[@class='calnavright']")
 	private WebElement forwrdbtn;
 	
+	@FindBy(xpath="//a[@id='Activities_logcall_button']")
+	private WebElement LogcallBtn;
+	
+	
+	
 	
 	
 	
@@ -152,4 +157,6 @@ public class LeadsDetailsPage extends Driver{
     	 sel.clickdatefromcalenderpopup(Calenderendbutton,monthyear ,monthyr, forwrdbtn); 
     	
      }
+     
+    
 }
