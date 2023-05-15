@@ -28,7 +28,7 @@ public class CasesStepDef extends Driver{
 	 
 	    @Then("^View Cases Page Should be Display$")
 	    public void view_cases_page_should_be_display() throws EncryptedDocumentException, IOException {
-		  String Actual = dr.getexceldata("Titles", 4, 1);
+		  String Actual = dr.getexceldata("Titles", 5, 1);
 		  String Expected = driver.getTitle();
 		  Assert.assertEquals(Expected, Actual);   
 	    }
@@ -77,6 +77,7 @@ public class CasesStepDef extends Driver{
 	    public void click_on_the_filter_icon() throws Throwable {
 	    	cf.ClickFilterIcon().click();  
 	    	Thread.sleep(2000);
+
 	    }
 	    
 	    @And("^Click on the AdvanceFilter button$")

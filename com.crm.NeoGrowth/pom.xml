@@ -186,6 +186,13 @@
     <version>2.11.0</version>
 </dependency>
 
+<dependency>
+    <groupId>org.junit.vintage</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <version>5.9.1</version>
+    <scope>test</scope>
+</dependency>
+
     </dependencies>
 
     <build>
@@ -206,11 +213,11 @@
                 <version>3.0.0</version>
                 <configuration>
                   <includes>
-                      <include>JunitTestRunnerTest.java</include>
+                      <include>**/*JunitRunnerTest.java</include>
                   </includes>
-                    <parallel>method</parallel>
+                    <parallel>methods</parallel>
                     <threadCount>3</threadCount>
-                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <perCoreThreadCount>true</perCoreThreadCount>
                 </configuration>
             </plugin>
         </plugins>

@@ -8,10 +8,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.crm.GenericUtilis.Driver;
+import com.crm.GenericUtilis.SeleniumUtility;
   
 
 
 public class LoginPagetest extends Driver{
+	SeleniumUtility su= new SeleniumUtility();
 	Driver dr=new Driver();
 	@FindBy(name="username")
 	private  WebElement UserTF;
@@ -21,7 +23,12 @@ public class LoginPagetest extends Driver{
 	
 	@FindBy(className = "button")
 	private WebElement LoginBtn;
-
+	
+	@FindBy(xpath="//span[@class='globallabel-user']")
+	private WebElement Logoutbtn;
+	
+	@FindBy(xpath="//ul[@aria-labelledby='with-label']//a[@id='logout_link']")
+    private WebElement LogoutLink;
 	
 	public LoginPagetest(WebDriver driver) {
 		this.driver = driver;
@@ -49,5 +56,9 @@ public class LoginPagetest extends Driver{
 		LoginBtn.click();
 		
 	}
-
+   
+	public void Logout() {
+		su.moveToElement(Logoutbtn);
+		LogoutLink.click();
+	}
 }

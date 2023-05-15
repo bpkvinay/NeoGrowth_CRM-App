@@ -136,14 +136,14 @@ public class Driver {
     }
 
 
-     /**
+     /**`
       * 
       * @return
       */
     
     public static WebDriver getWebDriver()
     {
-        System.out.println("WebDriver "+threadDriver.get());
+        //System.out.println("WebDriver "+threadDriver.get());
         return threadDriver.get();
     }
 	

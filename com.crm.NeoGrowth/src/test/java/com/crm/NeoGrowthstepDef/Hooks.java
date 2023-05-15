@@ -2,6 +2,7 @@ package com.crm.NeoGrowthstepDef;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
@@ -10,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import com.crm.GenericUtilis.Driver;
+import com.crm.GenericUtilis.SeleniumUtility;
 import com.crm.POM.LoginPagetest;
 
 import io.cucumber.java.After;
@@ -17,6 +19,7 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
+ 
 
 public class Hooks extends Driver {
      
@@ -27,10 +30,12 @@ public class Hooks extends Driver {
 		String br = dri.readConfig("browser");
 		   String qaurl = dri.readConfig("URL");
 		openBrowser(br,qaurl );
+		driver.manage().timeouts().implicitlyWait(6000, TimeUnit.SECONDS);
 	}
 	
 	@After
 	public void AfterScenario() {
+		//Lp.Logout();
 		driver.quit();
 	}
 	@AfterStep
