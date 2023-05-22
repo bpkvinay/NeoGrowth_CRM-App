@@ -180,7 +180,7 @@ public class SeleniumUtility extends Driver {
 									}
 			    				
   
-									public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton1) {
+									public void clickdatefromcalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement forwardbutton1,String h) {
 										calenderbutton.click();
 										while(true) 
 										{
@@ -194,7 +194,8 @@ public class SeleniumUtility extends Driver {
 												{
 										}
 											}}
-										//day.click();
+										WebElement day = driver.findElement(By.xpath("//a[normalize-space()="+h+"]"));
+										day.click();
 											}
 										
 										/**
