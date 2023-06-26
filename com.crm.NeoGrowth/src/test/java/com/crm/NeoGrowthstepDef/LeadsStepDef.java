@@ -11,15 +11,13 @@ import org.junit.Assert;
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
 import com.crm.POM.LeadsDetailsPage;
-import com.crm.POM.LeadsEditspage;
-
-import io.cucumber.java.en.And;
+ io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LeadsStepDef extends Driver{
 	
-	LeadsEditspage lp=new LeadsEditspage(driver);
+	LeadsEditspage lp =new LeadsEditspage(driver);
 	Driver dr=new Driver();
 	LeadsDetailsPage Ld= new LeadsDetailsPage(driver);
 	SeleniumUtility sp=new SeleniumUtility();

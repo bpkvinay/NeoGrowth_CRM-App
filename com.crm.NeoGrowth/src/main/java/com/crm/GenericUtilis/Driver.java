@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.Random;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -147,4 +148,17 @@ public class Driver {
         return threadDriver.get();
     }
 	
+    
+    /**
+     * @author Pavan.Joshi
+     * @param random
+     * @return
+     */
+    public long randomnumber(int random) {
+    	Random rad=new Random();
+    	long ran = rad.nextLong(random);
+    	return ran;
+    }
+    
+    
 }

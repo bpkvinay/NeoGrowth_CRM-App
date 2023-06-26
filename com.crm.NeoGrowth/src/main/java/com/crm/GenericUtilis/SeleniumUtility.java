@@ -185,7 +185,7 @@ public class SeleniumUtility extends Driver {
 										while(true) 
 										{
 											String text = Monthyear.getText();
-											if(text.equals(monthyear)) {
+											if(text.equalsIgnoreCase(monthyear)) {
 												break;
 											}
 											else 
@@ -203,7 +203,7 @@ public class SeleniumUtility extends Driver {
 										 * This method Used to handle the windows and child windows
 										 * 
 										 */
-										public void windowHandle() {
+										public void switchTochildwindowHandle() {
 										String parent=driver.getWindowHandle();
 										Set<String>s=driver.getWindowHandles();
 										  Iterator<String> I1= s.iterator();{
@@ -213,30 +213,56 @@ public class SeleniumUtility extends Driver {
 										if(!parent.equals(child_window))
 										{
 										driver.switchTo().window(child_window);
+										//driver.manage().window().maximize();
 										System.out.println(driver.switchTo().window(child_window).getTitle());
+		                               // driver.close();
+		                                
 										}
+										//driver.switchTo().window(parent);
 										}
-										  }
-
-
+										  }		
 									}
-									}
- 				
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
+										
+										
+										
+			public void clickdatefromCalenderpopup(WebElement calenderbutton,WebElement Monthyear,String monthyear,WebElement previousbtn,WebElement forwardbutton1,String d) {
+				calenderbutton.click();
+				WebElement day = driver.findElement(By.xpath("//a[normalize-space()="+d+"]"));
+				String Text = Monthyear.getText();
+					
+				  while(true)  
+					if(Text==monthyear) {
+						day.click();
+						break;
+					}else if((Text.compareTo(monthyear))<0) {
+						previousbtn.click();
+						day.click();
+						break;
+						
+					}else if(Text.compareTo(monthyear)>0) {
+						forwardbutton1.click();
+						day.click();
+						break;
+					}
+				
+			}
+				
+				
+				
+			
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+}
 
 
 

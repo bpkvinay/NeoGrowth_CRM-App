@@ -2,6 +2,7 @@ package com.crm.NeoGrowthstepDef;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -30,13 +31,14 @@ public class Hooks extends Driver {
 		String br = dri.readConfig("browser");
 		   String qaurl = dri.readConfig("URL");
 		openBrowser(br,qaurl );
-		driver.manage().timeouts().implicitlyWait(6000, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		//driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 	}
 	
 	@After
 	public void AfterScenario() {
 		//Lp.Logout();
-		driver.quit();
+		//driver.quit();
 	}
 	@AfterStep
 	public void AddScreenshot(Scenario scenario) throws IOException {

@@ -61,7 +61,7 @@ public class OpportunityPagetest extends Driver{
 	@FindBy(xpath = "//select[@id='eos_opportunity_status_c']")
 	private WebElement opportunitystatusDD;
 	
-	@FindBy(xpath = "//select[@id='eos_sub_disposition_c']")
+	@FindBy(xpath = "//select[@name='eos_sub_disposition_c']")
 	private WebElement SubdispositionDD;
 	
 	@FindBy(xpath = "//select[@id='eos_sub_status_c']")
@@ -74,13 +74,13 @@ public class OpportunityPagetest extends Driver{
 	private WebElement Editicon;
 	
 	//basic module caledarpopup xpaths
-	@FindBy(xpath = "//button[@id='pickup_appointment_date_c_trigger']") //1
+	@FindBy(xpath = "(//span[@alt=\"Enter Date\"])[1]") //1
 	private WebElement calendaricon;
 	//monthyear tag xpath
-	@FindBy(xpath = "(//a[@class='calna'])[2]") //2
+	@FindBy(xpath = "//a[@class='calnav']") //2
 	private WebElement MonthyearTag;
 	//Next Button Xpath
-	@FindBy(xpath = "(//a[@class=\"calnavright\"])[2]")  //3
+	@FindBy(xpath = "//a[@class='calnavright']")  //3
 	private WebElement NextButton;
 	
 	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_hours']") //4
@@ -151,6 +151,7 @@ public class OpportunityPagetest extends Driver{
 	
 	@FindBy(xpath = "//table[4]/tbody[1]/tr[1]/td[1]")
 	private WebElement selectuserFirstName;
+
 	
 	
 	
@@ -158,7 +159,6 @@ public class OpportunityPagetest extends Driver{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
 	
 	
 
@@ -235,13 +235,16 @@ public class OpportunityPagetest extends Driver{
 
 	
 
-	public void getSubdispositionDD(String subdisposition ) {
-		sp.selectByvalue(SubdispositionDD, subdisposition); 
+	public void getSubdispositionDD(int CCSubDisposition) {
+		sp.selectByindex(SubdispositionDD, CCSubDisposition);
+		
+		
+		  
 	}
 
 
-	public void getMonthyearTag(String monthYear) {
-		sp.clickdatefromcalenderpopup(calendaricon, MonthyearTag,monthYear, NextButton);
+	public void getMonthyearTag(String monthYear,String h) {
+		sp.clickdatefromcalenderpopup(calendaricon, MonthyearTag, monthYear, NextButton, h);
 	}
 
 
@@ -289,14 +292,16 @@ public class OpportunityPagetest extends Driver{
 
 
 
-	public void getSelectUserBtn() {
+	public void getSelectUserBtn() throws InterruptedException {
+		 String parent = driver.getWindowHandle();
 		 selectUserBtn.click();
-		 sp.windowHandle();
-	      sp.scrollToElement(selectuserFirstName, "selectuserFirstName");
+		 sp.switchTochildwindowHandle();
+		 Thread.sleep(2000);
 	      selectuserFirstName.click();
-		 
+	      Thread.sleep(2000);
+		 driver.switchTo().window(parent);
+		 Thread.sleep(3000);
 	}
-
 
 
 
@@ -321,6 +326,7 @@ public class OpportunityPagetest extends Driver{
 
 
 	public void getTradingNameTF(String Business_TradingName) {
+		 TradingNameTF.clear();
 		 TradingNameTF.sendKeys(Business_TradingName);
 	}
 
@@ -343,10 +349,11 @@ public class OpportunityPagetest extends Driver{
 
 	public void getAppointmentcontactNumber(String ContactNumber) {
 		String text = appointmentcontactNumber.getText(); 
-		if(text.isEmpty()) {
+		if(!text.isEmpty()) {
 			appointmentcontactNumber.sendKeys(ContactNumber);
 		}else {
 			System.out.println("appointmentcontactNumber is already present"+text);	
+			
 		}
 	}
 
@@ -355,7 +362,7 @@ public class OpportunityPagetest extends Driver{
 
 	public void getPickupPincode(String PickupPincode) {
 		 String text = pickupPincode.getText();
-		 if(text.isBlank()) {
+		 if(!text.isBlank()) {
 			 pickupPincode.sendKeys(PickupPincode);
 		 }else {
 			 System.out.println("pickupPincode is already present"+text);
@@ -366,8 +373,8 @@ public class OpportunityPagetest extends Driver{
 
 
 
-
 	public void getBusinessvintageTF(String businessVinatage) {
+		BusinessvintageTF.clear();
 		 BusinessvintageTF.sendKeys(businessVinatage);
 	}
 
@@ -375,6 +382,7 @@ public class OpportunityPagetest extends Driver{
 
 
 	public void getRemarksTF(String remarks) {
+		RemarksTF.clear();
 	 RemarksTF.sendKeys(remarks);
 	}
 
@@ -414,15 +422,13 @@ public class OpportunityPagetest extends Driver{
 	}
 
 	
-	
-	
-
-
-
-	
-	
-
-	
-	
-	
 }
+	
+
+
+
+	
+	
+
+	
+	

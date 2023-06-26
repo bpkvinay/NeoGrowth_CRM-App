@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
@@ -132,10 +133,9 @@ public class OppotunityStepDef extends Driver{
 	    	
 	    }
 	    
-	    @And("^select the CC Sub-Disposition from (.+) Drop Down$")
-	    public void select_the_cc_sub_disposition_from_connect_existing_cm_existing_customer_drop_down(String CCSubDisposition) {
-	       opp.getSubdispositionDD(CCSubDisposition);
-	    	
+	    @And("^select the value from CC Sub-Disposition (.+) Dropdown$")
+	    public void select_the_value_from_cc_subdisposition_dropdown(int ccsubdisposition) throws Throwable {
+	    	opp.getSubdispositionDD(ccsubdisposition);
 	    }
 	    
 	    @And("^select the CAM Opportunity Status from (.+) Drop Down$")
@@ -146,12 +146,12 @@ public class OppotunityStepDef extends Driver{
 	    @And("select the CAM Opportunity Sub Status auto updated with respect to opportunity status")
 	    public void select_the_cam_opportunity_sub_status_auto_updated_with_respect_to_opportunity_status() {
 	       
-	    	
 	    }
 	    
 	    @And("scroll Down the page and click on the save button")
-	    public void scroll_down_the_page_and_click_on_the_save_button() {
+	    public void scroll_down_the_page_and_click_on_the_save_button() throws InterruptedException {
 	    	opp.getSaveBtn();
+	    	Thread.sleep(2000);
 	    }
 	    
 	    @Then("User page should be upadted")
@@ -159,24 +159,29 @@ public class OppotunityStepDef extends Driver{
 	    	
 	    }
 	    
-	    
-	    @And("^pick the date from (.+) date popup$")
-	    public void pick_the_date_from_date_popup(String pickupappointmentdatetime) throws Throwable {
-	        opp.getMonthyearTag(pickupappointmentdatetime);
+	    //
+	    @And("^pick the date from (.+) and (.+) date popup$")
+	    public void pick_the_date_from_and_date_popup(String pickupappointmentdatetime, String h) throws Throwable {
+	    	Thread.sleep(5000);
+	        opp.getMonthyearTag(pickupappointmentdatetime, h);
+	        Thread.sleep(5000);
 	    }
 
 	    @And("^pick the time from (.+) Time/hours Drop Down$")
 	    public void pick_the_time_from_timehours_drop_down(String pickupappointmenttimehours) throws Throwable {
+	    	Thread.sleep(5000);
 	        opp.getHoursDD(pickupappointmenttimehours);
 	    }
 
 	    @And("^pick the time from (.+) Time/min Drop Down$")
 	    public void pick_the_time_from_timemin_drop_down(String pickupappointmenttime) throws Throwable {
+	    	Thread.sleep(5000);
 	        opp.getMinuteDD(pickupappointmenttime);
 	    }
 
 	    @And("^Enter the address into (.+) TF$")
 	    public void enter_the_address_into_tf(String pickupappointmentaddress) throws Throwable {
+	    	Thread.sleep(5000);
 	       opp.getPickupaddressTF(pickupappointmentaddress);
 	    }
 
@@ -189,89 +194,113 @@ public class OppotunityStepDef extends Driver{
 	    public void enter_the_feedback_into_tf(String pickupappointmentfeedback) throws Throwable {
 	        opp.getPickupfeedbackTF(pickupappointmentfeedback);
 	    }
-	    
+	   
 	    @And("^Enter the Pickup/ appointment allocated to into (.+) TF and clear TF$")
 	    public void enter_the_pickup_appointment_allocated_to_into_tf_and_clear_tf(String pickupappointmentallocatedto) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getAssignedUserTF(pickupappointmentallocatedto);
+	    
 	       
 	    }
-
+             
 	    @And("^click on the select user icon new window open and scroll down window and select allocated to name from select user page$")
 	    public void click_on_the_select_user_icon_new_window_open_and_scroll_down_window_and_select_allocated_to_name_from_select_user_page() throws Throwable {
-	       opp.getSelectUserBtn();
+	    	Thread.sleep(3000);
+	    	opp.getSelectUserBtn();
+	    	
 	    }
 
 	    @And("^Enter the Lead Description into (.+) TF$")
 	    public void enter_the_lead_description_into_tf(String leaddescription) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getLeadsdescriptionTF(leaddescription);
 	    }
 
 	    @And("^select the inbound insta callback value from (.+) Drop Down$")
 	    public void select_the_inbound_insta_callback_value_from_drop_down(String inboundinstacallback) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getInboundinstacallDD(inboundinstacallback);
 	    }
 
 	    @And("^Enter the Business /Trading Name into (.+) TF$")
 	    public void enter_the_business_trading_name_into_tf(String businesstradingname) throws Throwable {
-	        opp.getBusinessvintageTF(businesstradingname);
+	    	Thread.sleep(3000);
+	        opp.getTradingNameTF(businesstradingname);
 	    }
 
 	    @And("^Enter the Loan Amount Disbursed into (.+) TF$")
 	    public void enter_the_loan_amount_disbursed_into_tf(String loanamountdisbursed) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getLoandisbursedTF(loanamountdisbursed);
 	    }
 
 	    @And("^Enter the Loan Amount Sanctioned into (.+) TF$")
 	    public void enter_the_loan_amount_sanctioned_into_tf(String loanamountsanctioned) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getLoanamountsanctioned(loanamountsanctioned);
 	    }
 
 	    @And("^Enter the Pickup/appointment Contact Number into (.+) TF$")
 	    public void enter_the_pickupappointment_contact_number_into_tf(String pickupappointmentcontactnumber) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getAppointmentcontactNumber(pickupappointmentcontactnumber);
 	    }
 
 	    @And("^Enter the Pickup/ appointment pin code into (.+) TF$")
 	    public void enter_the_pickup_appointment_pin_code_into_tf(String pickupappointmentpincode) throws Throwable {
+	    	Thread.sleep(3000);
 	      opp.getPickupPincode(pickupappointmentpincode);
 	    }
 
 	    @And("^Enter the Business Vintage into (.+) TF$")
 	    public void enter_the_business_vintage_into_tf(String businessvintage) throws Throwable {
+	    	Thread.sleep(3000);
 	        opp.getBusinessvintageTF(businessvintage);
 	    }
 
 	    @And("^Enter the Remarks into (.+) drag Text box$")
 	    public void enter_the_remarks_into_drag_text_box(String remarks) throws Throwable {
+	    	Thread.sleep(3000);
 	        opp.getRemarksTF(remarks);
 	    }
 
 	    @And("^select the value from CC Agent Name (.+) Drop Down$")
 	    public void select_the_value_from_cc_agent_name_drop_down(String ccagentname) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getCcagentDD(ccagentname);
 	    }
 	    
 	    @And("^select the value from Average card sales per month (.+) Drop Down$")
 	    public void select_the_value_from_average_card_sales_per_month_drop_down(String averagecardsalespermonth) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getCardsalepermonthDD(averagecardsalespermonth);
 	    }
 
 	    @And("^Enter the CC Remark into (.+) TF$")
 	    public void enter_the_cc_remark_into_tf(String ccremark) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getCcremarksTF(ccremark);
 	    }
 
-	    @And("^Click on the Auto Assign To CAM check box $")
+	    @And("^Click on the Auto Assign To CAM check box$")
 	    public void click_on_the_auto_assign_to_cam_check_box() throws Throwable {
+	    	Thread.sleep(3000);
 	        opp.getCamAutoassignchkBox();
 	    }
 
 	    @And("^Enter the Channel Source into (.+) TF$")
 	    public void enter_the_channel_source_into_tf(String channelsource) throws Throwable {
+	    	Thread.sleep(3000);
 	       opp.getChannelsourceTF(channelsource);
 	    }
 
-	    
+	    @Then("^opportunity User page should be Updated and visible updated page$")
+	    public void opportunity_user_page_should_be_updated_and_visible_updated_page() throws Throwable {
+		    
+
+	    }
+	     
+	        
 
 
 	    
