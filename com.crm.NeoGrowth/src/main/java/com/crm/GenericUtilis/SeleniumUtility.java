@@ -1,9 +1,13 @@
 package com.crm.GenericUtilis;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +23,14 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.datatable.DataTable;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class SeleniumUtility extends Driver {
 	/**
@@ -27,6 +39,7 @@ public class SeleniumUtility extends Driver {
 	 */
 	
 	public JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
+	public static RequestSpecification Requestspec;
 	
 	     
 	/**
@@ -213,13 +226,76 @@ public class SeleniumUtility extends Driver {
 										if(!parent.equals(child_window))
 										{
 										driver.switchTo().window(child_window);
+										driver.manage().window().maximize();
 										System.out.println(driver.switchTo().window(child_window).getTitle());
 										}
 										}
 										  }
 
+										 
 
 									}
+										
+										
+										
+										 public void swithparentwindow() {
+											  String parent = driver.getWindowHandle();
+											  driver.switchTo().window(parent);
+										  }
+										 
+										 
+										 
+								public void getwindowtitle() {
+									String parent = driver.getWindowHandle();
+							Set<String> ab = driver.getWindowHandles();
+									System.out.println(ab);
+									//return ab;
+									//Iterator<String> I1 = ab.iterator();
+									for(String gh:ab) {
+							          if(!parent.equals(gh)) {
+							        	  driver.switchTo().window(gh);
+							        	  
+							          }
+							          
+							          
+							          
+									}
+								}	
+			
+								
+								/**
+								 * This method is used to log aswell as to hit the url and contenttype JSON
+								 * @return
+								 * @throws IOException 
+								 */
+		public RequestSpecification requestspecifications() throws IOException {
+			
+			if (Requestspec==null) {
+			PrintStream Log= new PrintStream(new FileOutputStream("log.text"));
+			Requestspec = new RequestSpecBuilder().setBaseUri(readConfig("api"))
+		              .addFilter(RequestLoggingFilter.logRequestTo(Log))
+		              .addFilter(ResponseLoggingFilter.logResponseTo(Log))
+		    		 .setContentType(ContentType.JSON).build();
+		     return Requestspec;
+		     
+		     
+								}
+			return Requestspec;
+										 
+										 
+										 
+		}				 
+		
+		public String getJsonPath(Response response,String key)
+		{
+			  String resp=response.asString();
+			JsonPath   js = new JsonPath(resp);
+			return js.get(key).toString();
+		}
+
+										 
+										 
+										 
 									}
  				
 
