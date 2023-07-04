@@ -1,4 +1,4 @@
-@opportunity @test
+@opportunity
 Feature: opportunity Module
  
   Background: Background Feature
@@ -53,7 +53,7 @@ Feature: opportunity Module
         
         
         
-    @EditPageBasicModuleFullRegression
+    
     Scenario: verify opportunity user edit page All elements
      When click on the Edit icon
      Then User edit page should be displayed

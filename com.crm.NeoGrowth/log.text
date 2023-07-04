@@ -1,0 +1,52 @@
+Request method:	POST
+Request URI:	https://crm2_0uat.neogrowth.in/index.php?entryPoint=crmapi
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "last_name": "ah",
+    "phone_mobile": "1003881371",
+    "is_renewal": "0",
+    "merchant_name_c": "youtubes",
+    "pickup_appointment_city_c": "BANGALORE",
+    "loan_amount_c": "600000",
+    "avg_sales_per_month_c": "34343",
+    "lead_source": "Marketing",
+    "indicative_deal_amount": "36473827",
+    "digital": "no",
+    "first_name": "bang"
+}
+HTTP/1.1 200 OK
+Date: Mon, 05 Jun 2023 05:45:50 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: nginx/1.20.1
+Vary: Accept-Encoding
+X-Powered-By: PHP/7.2.34
+Set-Cookie: PHPSESSID=pgstsqt2a1qonfml95g8ij8ndu; path=/; secure; HttpOnly
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate
+Pragma: no-cache
+Set-Cookie: sugar_user_theme=SuiteP; expires=Tue, 04-Jun-2024 05:45:50 GMT; Max-Age=31536000; secure; HttpOnly
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Referrer-Policy: origin
+X-Frame-Options: sameorigin
+X-Frame-Options: SAMEORIGIN
+Surrogate-Control: public, max-age=86400
+Cache-Control: public, max-age=120
+Content-Encoding: gzip
+
+<html>
+  <body>null</body>
+</html>

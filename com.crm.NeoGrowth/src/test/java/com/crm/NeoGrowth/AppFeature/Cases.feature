@@ -3,9 +3,9 @@ Feature: Cases Module
 
  Background: Background Feature
   
-  Given User enters Username and password and click on the Login Btn
+   Given User enters Username and password and click on the Login Btn
    When Mouse move over all sticky menu
-   @editcase
+  
    Scenario: Validate Edited details should be update in cases page, user edit details and click on save button 
     When click on the cases module link
     Then View Cases Page Should be Display
@@ -20,7 +20,7 @@ Feature: Cases Module
    |Tatdaysvalue|Casecategory|Casesubcategory|Casedetails|
    |1234567     |Legal       |Withdrawal of Legal/Arbitration|Loan Closed|
     
-  @filter
+ 
    Scenario: Verify the Search Result when user Click on Filter Icon (Advance Filter Tab)
    When Click on CasesModule Link
    When Click on the Filter Icon

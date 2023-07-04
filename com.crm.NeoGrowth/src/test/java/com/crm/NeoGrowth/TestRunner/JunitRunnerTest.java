@@ -13,12 +13,11 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions
         (
-        		features = "src/test/java/com/crm/NeoGrowth/AppFeature",
-             
-                glue = {"com.crm.NeoGrowthstepDef"},
-             //tags="@Smoke2",
-               monochrome=true,
-        		plugin= {"pretty",
+           features = "src/test/java/com/crm/NeoGrowth/AppFeature",  
+           glue = {"com.crm.NeoGrowthstepDef"},
+           tags="@UIAPIEndtoEndScenarios",
+           monochrome=true,
+           plugin= {"pretty",
         				"html:target/cucumber.html",
         				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
         	
