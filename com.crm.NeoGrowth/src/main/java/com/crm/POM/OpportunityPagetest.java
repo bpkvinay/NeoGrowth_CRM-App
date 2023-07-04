@@ -3,6 +3,8 @@ package com.crm.POM;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.xpath.XPath;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -72,39 +74,83 @@ public class OpportunityPagetest extends Driver{
 	private WebElement Editicon;
 	
 	//basic module caledarpopup xpaths
-	@FindBy(xpath = "//button[@id='pickup_appointment_date_c_trigger']")
+	@FindBy(xpath = "//button[@id='pickup_appointment_date_c_trigger']") //1
 	private WebElement calendaricon;
 	//monthyear tag xpath
-	@FindBy(xpath = "(//a[@class='calna'])[2]")
+	@FindBy(xpath = "(//a[@class='calna'])[2]") //2
 	private WebElement MonthyearTag;
 	//Next Button Xpath
-	@FindBy(xpath = "(//a[@class=\"calnavright\"])[2]")
+	@FindBy(xpath = "(//a[@class=\"calnavright\"])[2]")  //3
 	private WebElement NextButton;
 	
-	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_hours']")
+	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_hours']") //4
 	private WebElement HoursDD;
 	
-	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_minutes']")
+	@FindBy(xpath = "//select[@id='pickup_appointment_date_c_minutes']") //5
 	private WebElement MinuteDD;
 	
-	@FindBy(xpath = "//input[@id='pickup_appointment_address_c']")
+	@FindBy(xpath = "//input[@id='pickup_appointment_address_c']") //6
 	private WebElement pickupaddressTF;
 	
-	@FindBy(xpath = "//select[@id='servicable_c']")
+	@FindBy(xpath = "//select[@id='servicable_c']") //7
 	private WebElement servicableDD;
 	
-	@FindBy(xpath = "//textarea[@id='pickup_appointment_feedback_c']")
+	@FindBy(xpath = "//textarea[@id='pickup_appointment_feedback_c']") //8
 	private WebElement pickupfeedbackTF;
 	
-	@FindBy(xpath = "//button[@id='btn_assigned_user_name']")
+	@FindBy(xpath = "//input[@id='assigned_user_name']") //9
+	private WebElement assignedUserTF;
+	
+	@FindBy(xpath = "//button[@id='btn_assigned_user_name']") //10
 	private WebElement selectUserBtn;
 	
-	@FindBy(xpath = "//span[@class='suitepicon suitepicon-action-clear']")
+	@FindBy(xpath = "//span[@class='suitepicon suitepicon-action-clear']") //11
 	private WebElement ClearUserBtn;
 	
-	//@FindBy(xpath = "")
+	@FindBy(xpath = "//textarea[@id='leads_description_c']") //12
+	private WebElement leadsdescriptionTF;
 	
+	@FindBy(xpath = "//select[@id='inbound_insta_callback_c']") //13
+	private WebElement inboundinstacallDD;
 	
+	@FindBy(xpath = "//input[@id='merchant_name_c']") //14
+	private WebElement TradingNameTF;
+	
+	@FindBy(xpath = "//input[@id='amount']") //15
+	private WebElement loandisbursedTF;
+	
+	@FindBy(xpath = "//input[@id='loan_amount_sanctioned_c']") //16
+	private WebElement loanamountsanctionedTF;
+	
+	@FindBy(xpath = "//input[@id='pickup_appointment_contact_c']") //17
+	private WebElement appointmentcontactNumber;
+	
+	@FindBy(xpath = "//input[@id='pickup_appointment_pincode_c']") //18
+	private WebElement pickupPincode;
+	
+	@FindBy(xpath = "//input[@id='business_vintage_c']") //19
+	private WebElement BusinessvintageTF;
+	
+	@FindBy(xpath = "//textarea[@id='remarks_c']") //20
+	private WebElement RemarksTF;
+	
+	@FindBy(xpath = "//select[@id='cc_agent_name_c']")//21
+	private WebElement ccagentDD;
+	
+	@FindBy(xpath = "//select[@id='acspm_c']") //22
+	private WebElement cardsalepermonthDD;
+	
+	@FindBy(xpath = "//textarea[@id='eos_remark_c']") //23
+	private WebElement ccremarksTF;
+	
+	@FindBy(xpath = "//input[@id='cam_auto_assign']") //24
+	private WebElement CamAutoassignchkBox;
+	
+	@FindBy(xpath = "//input[@id='channel_source_c']") //25
+	private WebElement channelsourceTF;
+	
+	@FindBy(xpath = "//table[4]/tbody[1]/tr[1]/td[1]")
+	private WebElement selectuserFirstName;
 	
 	
 	
@@ -112,6 +158,7 @@ public class OpportunityPagetest extends Driver{
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
 	
 	
 
@@ -192,11 +239,185 @@ public class OpportunityPagetest extends Driver{
 		sp.selectByvalue(SubdispositionDD, subdisposition); 
 	}
 
+
+	public void getMonthyearTag(String monthYear) {
+		sp.clickdatefromcalenderpopup(calendaricon, MonthyearTag,monthYear, NextButton);
+	}
+
+
+
+	public void getHoursDD(String hoursDD) {
+		sp.selectByvalue(HoursDD, hoursDD); 
+		
+	}
+
+
+
+
+	public void getMinuteDD(String minuteDD) {
+		sp.selectByvalue(MinuteDD, minuteDD);
+	}
+
+
+
+
+	public void getPickupaddressTF(String adress) {
+		 pickupaddressTF.clear();
+		 pickupaddressTF.sendKeys(adress);
+	}
+
+
+
+
+	public void getServicableDD(String ServicableDD) {
+		sp.selectByvalue(servicableDD, ServicableDD); 
+	}
+
+	public void getPickupfeedbackTF(String PickupfeedbackTF) {
+	  pickupfeedbackTF.clear();
+	  pickupfeedbackTF.sendKeys(PickupfeedbackTF);
+	}
+
+
+
+
+	public void getAssignedUserTF(String assigneduser) {
+		 assignedUserTF.clear();
+		 assignedUserTF.sendKeys(assigneduser);
+		 getClearUserBtn();
+	}
+
+
+
+	public void getSelectUserBtn() {
+		 selectUserBtn.click();
+		 sp.windowHandle();
+	      sp.scrollToElement(selectuserFirstName, "selectuserFirstName");
+	      selectuserFirstName.click();
+		 
+	}
+
+
+
+
+	public void getClearUserBtn() {
+		 ClearUserBtn.click();
+	}
+
+
+
+	public void getLeadsdescriptionTF(String Leaddescription) {
+		 leadsdescriptionTF.sendKeys(Leaddescription);
+	}
+
+
+
+
+	public void getInboundinstacallDD(String InboundInstaCallDD) {
+		sp.selectByvalue(inboundinstacallDD, InboundInstaCallDD);
+	}
+
+
+
+
+	public void getTradingNameTF(String Business_TradingName) {
+		 TradingNameTF.sendKeys(Business_TradingName);
+	}
+
+
+
+
+	public void getLoandisbursedTF(String LoanDisbursed) {
+		 loandisbursedTF.sendKeys(LoanDisbursed);
+	}
+
+
+
+
+	public void getLoanamountsanctioned(String LoanSanctioned) {
+		 loanamountsanctionedTF.sendKeys(LoanSanctioned);
+	}
+
+
+
+
+	public void getAppointmentcontactNumber(String ContactNumber) {
+		String text = appointmentcontactNumber.getText(); 
+		if(text.isEmpty()) {
+			appointmentcontactNumber.sendKeys(ContactNumber);
+		}else {
+			System.out.println("appointmentcontactNumber is already present"+text);	
+		}
+	}
+
+
+
+
+	public void getPickupPincode(String PickupPincode) {
+		 String text = pickupPincode.getText();
+		 if(text.isBlank()) {
+			 pickupPincode.sendKeys(PickupPincode);
+		 }else {
+			 System.out.println("pickupPincode is already present"+text);
+		 }
+			 
+		 
+	}
+
+
+
+
+	public void getBusinessvintageTF(String businessVinatage) {
+		 BusinessvintageTF.sendKeys(businessVinatage);
+	}
+
+
+
+
+	public void getRemarksTF(String remarks) {
+	 RemarksTF.sendKeys(remarks);
+	}
+
+
+
+
+	public void getCcagentDD(String CCagentDD) {
+		sp.selectByvalue(ccagentDD, CCagentDD); 
+	}
+
+
+
+
+	public void getCardsalepermonthDD(String CardsaleperMonth) {
+		sp.selectByvalue(cardsalepermonthDD, CardsaleperMonth) ;
+	}
+
+
+
+
+	public void getCcremarksTF(String CCremark) {
+		ccremarksTF.sendKeys(CCremark);
+	}
+
+
+
+
+	public void getCamAutoassignchkBox() {
+		 CamAutoassignchkBox.click();
+	}
+
+
+
+
+	public void getChannelsourceTF(String Channelsource) {
+		 channelsourceTF.sendKeys(Channelsource);
+	}
+
+	
+	
 	
 
-	public void getSubopportunityDD(String subopportunity) {
-		sp.selectByvalue(SubopportunityDD, subopportunity);
-	}
+
 
 	
 	
