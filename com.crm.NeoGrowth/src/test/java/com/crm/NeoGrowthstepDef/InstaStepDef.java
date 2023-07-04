@@ -38,7 +38,7 @@ public class InstaStepDef extends Driver {
 	public void enter_mobile_number() throws InterruptedException {
    //	lc.getOTP();
 		driver.findElement(By.xpath("(//input[@id=\"mobile-number\"])[1]")).sendKeys(num);
-	Thread.sleep(4000);
+	Thread.sleep(1000);
 		System.out.println(num);
         
 
@@ -71,7 +71,7 @@ public class InstaStepDef extends Driver {
 		Response response = RestAssured.given()
 		          .baseUri("https://crm2_0uat.neogrowth.in")
 		          .body("{\r\n"
-		                  + "  \"lead_id\": \"8c28522a-102a-6a38-3a57-649978328d00\"\r\n"
+		                  + "  \"lead_id\": \""+leadId+"\"\r\n"
 		                  + "}")
 		          .headers("REQUESTEDMODULE", "Lead", "REQUESTEDMETHOD", "Fetch", "Content-Type", "application/json;charset=utf-8","Accept", "application/json, text/plain, application/json",
 		          		"Authorization", "BasicTkczOTU6V2VsY29tZUAxMjM=","User-Agent", "PostmanRuntime/7.32.2","Accept-Language", "en-US","Cache-Control", "no-cache",
@@ -104,8 +104,7 @@ public class InstaStepDef extends Driver {
 
 	@Then("Enter {string}")
 	public void enter(String string) {
-	    WebElement PanNumber = driver.findElement(By.xpath("//input[@placeholder='XXXXX0000X']"));
-	    PanNumber.sendKeys("AOSPV4431J");
+	    lc.enterpan(string);
 	}
 
 	@Then("click on correct button")
@@ -205,11 +204,12 @@ public class InstaStepDef extends Driver {
 	    driver.findElement(By.xpath("//input[@name='business-address']")).sendKeys("bangalore");
 	}
 	
-	@Then("Enter the value into pincode")
-	public void enter_the_value_into_pincode() {
+	@Then("Enter the value into pincode {string}")
+	public void enter_the_value_into_pincode(String string) {
 		
-		driver.findElement(By.xpath("(//input[@placeholder='Enter here'])[5]")).sendKeys("560078");
-		driver.findElement(By.xpath("//button[text()='Next']")).click();
+//		driver.findElement(By.xpath("(//input[@placeholder='Enter here'])[5]")).sendKeys("560040");
+//		driver.findElement(By.xpath("//button[text()='Next']")).click();
+		lc.enterpincode(string);
 	}
 
 	@Then("KYC verification options page should be displayed")
@@ -299,28 +299,46 @@ public class InstaStepDef extends Driver {
 		      .when().log().all().post()
 		      .then().assertThat().statusCode(200)
 		        .extract().response();
-	  String leadId = respo1.jsonPath().getString("data.lead.crm_lead_id");
+	  leadId = respo1.jsonPath().getString("data.lead.crm_lead_id");
 	  System.out.println(num);
  System.out.println(leadId);
  }
 	
 	@Then("Call CRMAPI with leadID while generated From InstathroughMobileNumber")
 	public void call_crmapi_with_lead_id_while_generated_from_instathrough_mobile_number() {
-//		String leadidfetch =
-//				"{\r\n"
-//		+ "\"lead_id\":\""+leadId+"\"\r\n"
-//		+ "}";
-//		
-//		
-//	   RestAssured.baseURI="https://crm2_0uat.neogrowth.in/index.php?entryPoint=crmapi";
-//	   Response response = given().headers("Content-Type","application/json").body(leadidfetch)
-//	   .when().log().all().get()
-//	   .then().assertThat().statusCode(200).extract().response();
-//	  String channel_source = response.jsonPath().getString("Leads[0].channel_source");
-//	  System.out.println(channel_source);
-//	  Assert.assertEquals("Insta", channel_source);
-	   
-	}  
-	}
+		String leadidfetch =
+				"{\r\n"
+		+ "\"lead_id\":\""+leadId+"\"\r\n"
+		+ "}";
+		Response response = RestAssured.given()
+		          .baseUri("https://crm2_0uat.neogrowth.in")
+		          .body(leadidfetch)
+
+		          .headers("REQUESTEDMODULE", "Lead", "REQUESTEDMETHOD", "Fetch", "Content-Type", "application/json;charset=utf-8","Accept", "application/json, text/plain, application/json",
+		          		"Authorization", "BasicTkczOTU6V2VsY29tZUAxMjM=","User-Agent", "PostmanRuntime/7.32.2","Accept-Language", "en-US","Cache-Control", "no-cache",
+		          		"AUTHORIZEDAPPLICATION","N30gr0wth")
+		          .when().log().all().get("/index.php?entryPoint=crmapi")
+		
+	  // RestAssured.baseURI="https://crm2_0uat.neogrowth.in/";
+	   //Response response = given().headers("Content-Type","application/json").body(leadidfetch)
+	  // .when().log().all().get("index.php?entryPoint=crmapi")
+	   .then().assertThat().statusCode(200).extract().response();
+	  String leadsource = response.jsonPath().getString("Leads[0].lead_source");
+	  String phonemobile= response.jsonPath().getString("Leads[0].phone_mobile");
+	  String productC=  response.jsonPath().getString("Leads[0].product_c");
+	  String sourceType= response.jsonPath().getString("Leads[0].source_type");
+	  String channel_source=response.jsonPath().getString("Leads[0].channel_source");
+	  System.out.println(leadsource);
+	  System.out.println(phonemobile);
+	  System.out.println(productC);
+	  System.out.println(sourceType);
+	  System.out.println(channel_source);
+	  Assert.assertEquals("Marketing", leadsource);
+	  Assert.assertEquals(num, phonemobile);
+	  Assert.assertEquals("Insta Express Digital", productC);
+	  Assert.assertEquals("NeoCash Insta", sourceType);
+	  Assert.assertEquals("Insta", channel_source);
 	
+	}
+}
 

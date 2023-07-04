@@ -1,4 +1,4 @@
-
+@lead
 Feature: Leads Testcases
    
    Background: 
@@ -98,7 +98,7 @@ Feature: Leads Testcases
     
   
   
-  @Smoke1
+  @Smoke
   Scenario Outline: Verify the Meeting Page when user clicked on Subject Link From activities submodule
   When click on LeadsNameLink
   Then Leadsdetailspage should be display
@@ -121,41 +121,52 @@ Feature: Leads Testcases
   |        Subject            |StartDate |EndDate   |StartHour|StartMinute|EndHour|EndMinute|
   |Meeting for Customerdetails|05/27/2023|05/27/2023|03       |15         |03     |30       |
   
-  
-  #@Smoke2
-  # Scenario Outline: Verify the Meeting Page when user clicked on Subject Link From activities submodule
-  #When click on LeadsNameLink
-  #Then Leadsdetailspage should be display
-  #And scroll down and click activities submodule
-  #And click Creattask dropdown
-  #And click on Schedule meeting option 
-  #And Enter subject1 in <Subject1>
-  #And Select month year from calender<monthyear>
-  #And Select day from calender<date>
-  
-  
-  #Examples: 
-  #|Subject1|monthyear|date|
-  #|hajs|JUNE 2024|25|
-  
-Scenario Outline: Verify the logcall task should be created when user click on logcall button from create task dropdown
+   
+   
+   
+   
+   @sanity
+   Scenario Outline: Verify the logcall task should be created when user click on logcall button from create task dropdown
    When click on LeadsNameLink
    Then Leadsdetailspage should be display
    And scroll down and click activities submodule
    And click Creattask dropdown
    And click on Log Call Option
    And Enter subject in <subject1> TF in Logcall Page
-   And select monthyear from calender<monthyear> in Logcall page
-   And Click StartTime DropDown and select <StartHour> in logcall page 
-   And Click StartMinute DropDown and select <StartMinute> in logcall page 
+   And select monthyear from calender<monthyear> and <date> in Logcall page
+   And click starthour from logcall page <StartHour>
+   And click startminute from  logcall page <StartMinute>
    And enter <duration> in duration TF in logcall page 
    And Enter <minutes> in Duration Dropdown in logcall page 
-   And Select <Status1> and <Status2> from Status Dropdown in logcall page 
+   And Select <Status1> from Status Dropdown in logcall page
+   And Select <Status2> from Status1 DropDown in logcall page
+   And select <relatedto> value from Relatedto dropdown
+   And Click on Save button from Logcallpage
    
    Examples:
-   |subject1|monthyear|StartHour|StartMinute|duration|minutes|Status1|Status2|
-   |schedule logcall|july 2024|10|30|3|30|Outbound|Planned|
+   |subject1        |monthyear  |date|StartHour|StartMinute|duration|minutes|Status1|Status2|relatedto|
+   |schedule logcall|JULY 2024  |12  |10       |15         |3       |45     |Inbound|Planned|Cases    |
+   |purposefordetals|AUGUST 2025|12  |10       |15         |3       |45     |Inbound|Planned|Cases    |
    
+   @sanity7
+   Scenario Outline: Verfiy the mass update users when selectall users
+    
+    When user select all leads at time by clicking selectall from checkbox
+    And click on massupdate from dropdown
+    And Select massassign user from Assigned user TF
+    Then new window should be display with <childwindowtitle>
+    And enter any <username> in Username TF
+    And click on Search button
+    And Select search result which having <username>
+    And Scroll down and click on update button
+    And Click ok button from alertpopup
+    Then validate the searchuser<username> from userlink
+    
+    Examples: 
+    |childwindowtitle|username|
+    |NeoGrowth Credit Pvt.Ltd|Vinay.Gaonkar|
+    
+    
    
    
    

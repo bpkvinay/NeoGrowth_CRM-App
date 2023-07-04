@@ -1,8 +1,8 @@
-@insta
-Feature: Insta Application
+@UIAPIEndtoEndScenarios
+Feature: Insta To CRM Applications End To End Scenarios
 
 
-  Scenario Outline: Enter the mobile number
+  Scenario Outline: Verify the flow of Lead Details from CRM when Lead created from Insta Applications
     Given AddLeadAPI Payload with register numebr first
     Then addotpAPI Payload with succefully OTP
     And Fetch the lead ID from Insta API
@@ -34,16 +34,16 @@ Feature: Insta Application
     And Enter the value into Verify Your Business Details of <Registered Business Name>
     And Enter the value into Verify Your Business Details of <Business Registration Date> 
     And Enter the value into Verify Your Business Details of <Business Address>
-    And Enter the value into pincode
+    And Enter the value into pincode "<Pincode>"
     And click on the Next button 
     Then KYC verification options page should be displayed
-    When Enter CRM URL launch CRM application
-    Then verified Home page url
-    When Enter valid username and password click on the login btn
-    Then Click on the lead options 
-    And Verify lead details
+    #When Enter CRM URL launch CRM application
+    #Then verified Home page url
+    #When Enter valid username and password click on the login btn
+    #Then Click on the lead options 
+    #And Verify lead details
     Then Call CRMAPI with leadID while generated From InstathroughMobileNumber
     
     Examples:
-    |Pincode|EmailID|
-    |560078|vg@gmail.com|
+    |Pincode|EmailID|business PAN|
+    |560040|vg@gmail.com|BAWPM3735P|

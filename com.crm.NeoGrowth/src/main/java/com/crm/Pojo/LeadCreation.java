@@ -50,6 +50,14 @@ public class LeadCreation extends Driver {
    
    @FindBy(xpath="//button[text()='Next']")
    private WebElement NextButton;
+   
+   @FindBy(xpath="//input[@placeholder='XXXXX0000X']")
+   private WebElement PANdetails;
+   
+   @FindBy(xpath="(//input[@placeholder='Enter here'])[5]")
+   private WebElement pincode1;
+   
+   
 	 
    public LeadCreation(WebDriver driver) {
 	   this.driver=driver;
@@ -87,4 +95,12 @@ public class LeadCreation extends Driver {
 	   NextButton.click();
    }
    
+   public void enterpan(String pan) {
+	   PANdetails.sendKeys(pan); 
+   }
+   
+   public void enterpincode(String pincode) {
+	   pincode1.sendKeys(pincode);
+	   NextButton.click();
+   }
 }

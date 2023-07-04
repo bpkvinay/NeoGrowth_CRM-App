@@ -75,16 +75,32 @@ public class LeadsDetailsPage extends Driver{
 	@FindBy(xpath="//a[@id='Activities_logcall_button']")
 	private WebElement LogcallBtn;
 	
+	@FindBy(xpath="//input[@id='duration_hours']")
+	private WebElement durationTF;
 	
+	@FindBy(xpath="//select[@id='duration_minutes']")
+	private WebElement duarationminutes;
 	
+	@FindBy(xpath="//select[@name='direction']")
+	private WebElement Status1dropdown;
 	
+	@FindBy(xpath="//select[@name='status']")
+	private WebElement Status2dropdown;
 	
+	@FindBy(xpath="//select[@name='parent_type']")
+	private WebElement relateddropdown;
 	
+	@FindBy(xpath="(//input[@id='Calls_subpanel_save_button'])[2]")
+	private WebElement logcallsavebutton;
+	
+	@FindBy(xpath="//table/tbody/tr[1]/td[10]")
+	private WebElement userlinkmainpage;
 	
 	public LeadsDetailsPage(WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
 	}
+	
 	public  void clickdate(String h) {
 		WebElement dy = driver.findElement(By.xpath("//a[normalize-space()="+h+"]"));
 		dy.click();
@@ -114,7 +130,7 @@ public class LeadsDetailsPage extends Driver{
     }
     
     public void selectstarthourstime(String hours) {
-    	sel.selectByvalue(selectstarthours,hours);
+    	sel.selectByText(selectstarthours,hours);
     	
     }
     
@@ -149,14 +165,43 @@ public class LeadsDetailsPage extends Driver{
     	return createtasklink.getText();
     }
     
-    public void CalendeStartrButton(String monthyr) {
-    	sel.clickdatefromcalenderpopup(Calnderstartbutton,monthyear ,monthyr, forwrdbtn);
+    public void CalendeStartrButton(String monthyr,String dy) {
+    	sel.clickdatefromcalenderpopup(Calnderstartbutton,monthyear ,monthyr, forwrdbtn,dy);
     	
     }
-     public void CalenderEndButtton(String monthyr) {
-    	 sel.clickdatefromcalenderpopup(Calenderendbutton,monthyear ,monthyr, forwrdbtn); 
+     public void CalenderEndButtton(String monthyr,String dy) {
+    	 sel.clickdatefromcalenderpopup(Calenderendbutton,monthyear ,monthyr, forwrdbtn,dy); 
     	
      }
-     
+     public void clicklogcallbutton() {
+    	 LogcallBtn.click();
+     }
+     public void enterdurationTF(String duration) {
+    	 durationTF.clear();
+    	 durationTF.sendKeys(duration);
+    	  }
     
+     public void enterdurationminutesTF(String minute ) {
+    	 sel.selectByvalue(duarationminutes, minute);
+     }
+    
+     public void selectstatus1dropdown(String stat1) {
+    	 sel.selectByText(Status1dropdown,stat1);
+     }
+     public void selectstatus2dropdown(String stat2) {
+    	 sel.selectByText(Status2dropdown, stat2);
+     }
+     
+     public void clickrelateddropdown(String relatedto) {
+    	 sel.selectByvalue(relateddropdown, relatedto);
+     }
+     
+     public void clicksavebuttonfromlogcallpage() {
+    	 logcallsavebutton.click();
+     }
+     
+     public String getactualusername() {
+    	 return userlinkmainpage.getText();
+    	 
+     }
 }

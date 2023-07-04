@@ -1,5 +1,6 @@
 package com.crm.POM;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -76,6 +77,31 @@ public class LeadsEditspage extends Driver{
 	
 	@FindBy(xpath="//span[@id='first_name']")
 	private WebElement updatedFirstnameTF;
+	
+	@FindBy(xpath="//ul[@id='selectLinkTop']//label[@class='glyphicon bootstrap-checkbox initialized-checkbox glyphicon-unchecked']")
+	private WebElement SelectBox;
+	
+	@FindBy(xpath="(//span[@class='suitepicon suitepicon-action-caret'])[4]")
+	private WebElement dropdownicon;
+	
+	@FindBy(xpath="//a[@id='massupdate_listview_top']")
+	private WebElement massupdateoption;
+	
+	@FindBy(xpath="//button[@id='mass_assigned_user_name_btn']")
+	private WebElement clickmassassignedusernamearrow;
+	
+	@FindBy(xpath="//input[@id='user_name_advanced']")
+	private WebElement advancenameusernameTF;
+	
+	@FindBy(xpath="//input[@id='search_form_submit']")
+	private WebElement advancepagesearchbtn;
+	
+	@FindBy(xpath="(//table/tbody/tr[1]/td[2])[4]")
+	private WebElement captureusername;
+	
+	@FindBy(xpath="//input[@id='update_button']")
+	private WebElement massupdatebutton;
+	
 	
 	public LeadsEditspage(WebDriver driver) {
 		this.driver = driver;
@@ -169,6 +195,47 @@ public class LeadsEditspage extends Driver{
      
      public String getupdatedfirstnameTF() {
     	 return updatedFirstnameTF.getText();
+     }
+     public void clickboxcheck() {
+    	 sel.clickCheckBox(SelectBox,"checkbox");
+     }
+     public void selectcheckboxandclickmassupdate() {
+    	 dropdownicon.click();
+    	 massupdateoption.click();
+     }
+     public void clickmassassignedusernamearrow()
+     {   
+    	 
+    	 clickmassassignedusernamearrow.click();
+     }
+     
+     public void enterusernameadvanceTF(String username ) {
+    	 advancenameusernameTF.clear();
+    	 advancenameusernameTF.sendKeys(username);
+     }
+     
+     public void clickSearcbutton() {
+    	 advancepagesearchbtn.click();
+     }
+     
+     public String actualusername() {
+    	 return captureusername.getText();
+    	 
+     }
+     
+     public void clickusername(String adavanceusername ) {
+    	if (actualusername().equalsIgnoreCase(adavanceusername)) {
+    		captureusername.click();
+    	}
+    	else {
+    		Assert.fail("username is not found, please search valid username" + adavanceusername);
+    	}
+    	
+     }
+     
+     public void clickupdatebutton() {
+    	 massupdatebutton.click();
+    	 
      }
 }
 

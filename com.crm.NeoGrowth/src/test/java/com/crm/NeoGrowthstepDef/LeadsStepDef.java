@@ -23,6 +23,7 @@ public class LeadsStepDef extends Driver{
 	Driver dr=new Driver();
 	LeadsDetailsPage Ld= new LeadsDetailsPage(driver);
 	SeleniumUtility sp=new SeleniumUtility();
+	String parent = driver.getWindowHandle();
 	
 
 	
@@ -35,7 +36,7 @@ public class LeadsStepDef extends Driver{
     @When("^click on First name dropdown and select (.+)$")
     public void click_on_first_name_dropdown_and_select(String firstnameprefix) throws Throwable {
         lp.getPrefixNameDrop(firstnameprefix);
-        Thread.sleep(2000);
+        
     }
     
     @When("User scroll and click on Save buttom")
@@ -47,8 +48,9 @@ public class LeadsStepDef extends Driver{
 
     @Then("Leads list page should be display")
     public void leads_list_page_should_be_display() throws Throwable {
+    	Thread.sleep(3000);
     	Assert.assertEquals(driver.getTitle(),dr.getexceldata("Titles", 1, 1));
-    	 Thread.sleep(3000);
+    	 
       
     }
     @Then("^Edit page should be display$")
@@ -66,7 +68,7 @@ public class LeadsStepDef extends Driver{
     @And("^click on the Leads module link$")
     public void click_on_the_leads_module_link() throws Throwable {
         lp.Leadslnk();
-        Thread.sleep(3000);
+        
         }
 
     @And("^Enter the value in Firstname TF(.+)$")
@@ -182,9 +184,9 @@ public class LeadsStepDef extends Driver{
        Ld.EnterSelectEndDate(enddate);
     }
 
-    @And("^Click StartTime DropDown and select (.+)$")
-    public void click_starttime_dropdown_and_select(String starthour) throws Throwable {
-       Ld.selectstarthourstime(starthour);
+   @And("^Click StartTime DropDown and select (.+)$")
+   public void click_starttime_dropdown_and_select(String starthour) throws Throwable {
+      Ld.selectstarthourstime(starthour);
     }
 
     @And("^Click StartMinute DropDown and select (.+)$")
@@ -231,20 +233,138 @@ public class LeadsStepDef extends Driver{
     	 Ld.EnterValueinSubjectTF(subject1);
     }
     
-    @And("^Select month year from calender(.+)$")
-    public void select_month_year_from_calender(String monthyear) throws Throwable {
-    	Thread.sleep(3000);
-        Ld.CalendeStartrButton(monthyear);
-        Thread.sleep(10000);
+    @And("^Select month year from calender(.+) and (.+)$")
+    public void select_month_year_from_calender_and(String monthyear, String date) throws Throwable {
+        Ld.CalendeStartrButton(monthyear, date);
+        
     }
   
     @And("^Select day from calender(.+)$")
     public void select_day_from_calender(String date) throws Throwable {
-    	Thread.sleep(3000);
+    
         Ld.clickdate(date);
-        Thread.sleep(9000);
+  
     } 
     
+    @And("^click on Log Call Option$")
+    public void click_on_log_call_option() throws Throwable {
+        Ld.clicklogcallbutton();
+    }
 
+    @And("^Enter subject in (.+) TF in Logcall Page$")
+    public void enter_subject_in_tf_in_logcall_page(String subject1) throws Throwable {
+       Ld.EnterValueinSubjectTF(subject1);
+    }
+
+    @And("^select monthyear from calender(.+) and (.+) in Logcall page$")
+    public void select_monthyear_from_calender_and_in_logcall_page(String monthyear, String date) throws Throwable {
+        Ld.CalendeStartrButton(monthyear, date);
+        
+    }
+
+    @And("^click starthour from logcall page (.+)$")
+    public void click_starthour_from_logcall_page(String starthour) throws Throwable {
+        Ld.selectstarthourstime(starthour);
+    }
+
+
+    @And("^click startminute from  logcall page (.+)$")
+    public void click_startminute_from_logcall_page(String StartMinute) throws Throwable {
+       Ld.selectminutestime(StartMinute);
+    }
+
+    @And("^enter (.+) in duration TF in logcall page$")
+    public void enter_in_duration_tf_in_logcall_page(String duration) throws Throwable {
+        Ld.enterdurationTF(duration);
+    }
+
+    @And("^Enter (.+) in Duration Dropdown in logcall page$")
+    public void enter_in_duration_dropdown_in_logcall_page(String minutes) throws Throwable {
+        Ld.enterdurationminutesTF(minutes);
+    }
+
+    @And("^Select (.+) and (.+) from Status Dropdown in logcall page$")
+    public void select_and_from_status_dropdown_in_logcall_page(String status1, String status2) throws Throwable {
+      Ld.selectstatus1dropdown(status1);
+      Ld.selectstatus1dropdown(status2);
+    }
     
+    @And("^select (.+) value from Relatedto dropdown$")
+    public void select_value_from_relatedto_dropdown(String relatedto) throws Throwable {
+    	
+        Ld.clickrelateddropdown(relatedto);
+        
+    }
+
+    @And("^Select (.+) from Status Dropdown in logcall page$")
+    public void select_from_status_dropdown_in_logcall_page(String status1) throws Throwable {
+        Ld.selectstatus1dropdown(status1);
+    }
+    
+    @And("^Select (.+) from Status1 DropDown in logcall page$")
+    public void select_from_status1_dropdown_in_logcall_page(String status2) throws Throwable {
+       Ld.selectstatus2dropdown(status2);
+    }
+    
+    @And("^Click on Save button from Logcallpage$")
+    public void click_on_save_button_from_logcallpage() throws Throwable {
+        Ld.clicksavebuttonfromlogcallpage();
+        
+    }
+    
+    @When("^user select all leads at time by clicking selectall from checkbox$")
+    public void user_select_all_leads_at_time_by_clicking_selectall_from_checkbox() throws Throwable {
+        lp.clickboxcheck();
+        Thread.sleep(3000);
+    }
+
+    @Then("^new window should be display with (.+)$")
+    public void new_window_should_be_display_with(String childwindowtitle) throws Throwable {
+      Assert.assertEquals(childwindowtitle, sp.getexceldata("Titles", 6, 1));
+       
+    }
+
+    @Then("^validate the searchuser(.+) from userlink$")
+    public void validate_the_searchuser_from_userlink(String username) throws Throwable {
+        Assert.assertTrue(Ld.getactualusername().contains(username));
+        
+    }
+
+    @And("^click on massupdate from dropdown$")
+    public void click_on_massupdate_from_dropdown() throws Throwable {
+        lp.selectcheckboxandclickmassupdate();
+    }
+
+    @And("^Select massassign user from Assigned user TF$")
+    public void select_massassign_user_from_assigned_user_tf() throws Throwable {
+    	
+        lp.clickmassassignedusernamearrow();
+    }
+
+    @And("^enter any (.+) in Username TF$")
+    public void enter_any_in_username_tf(String username) throws Throwable {
+        sp.windowHandle();
+        lp.enterusernameadvanceTF(username);
+    }
+
+    @And("^click on Search button$")
+    public void click_on_search_button() throws Throwable {
+        lp.clickSearcbutton();
+    }
+
+    @And("^Select search result which having (.+)$")
+    public void select_search_result_which_having(String username) throws Throwable {
+        lp.clickusername(username);
+       driver.switchTo().window(parent);   
+    }
+
+    @And("^Scroll down and click on update button$")
+    public void scroll_down_and_click_on_update_button() throws Throwable {
+        lp.clickupdatebutton();     
+    }
+
+    @And("^Click ok button from alertpopup$")
+    public void click_ok_button_from_alertpopup() throws Throwable {
+       sp.Alertpopupclickokbutton(); 
+    }
 }
