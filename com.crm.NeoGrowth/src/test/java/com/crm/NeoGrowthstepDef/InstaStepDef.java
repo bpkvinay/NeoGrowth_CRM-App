@@ -1,47 +1,57 @@
 package com.crm.NeoGrowthstepDef;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
+import java.io.IOException;
 import java.time.Duration;
-import java.util.Random;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.Reporter;
 
 import com.crm.GenericUtilis.Driver;
 import com.crm.GenericUtilis.SeleniumUtility;
+import com.crm.Pojo.LeadCreation;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import junit.framework.Assert;
+
 
 public class InstaStepDef extends Driver {
-	Driver d=new Driver();
-	SeleniumUtility sel=new SeleniumUtility();
+	static Driver d= new Driver();
+	SeleniumUtility sel = new SeleniumUtility();
+	LeadCreation lc= new LeadCreation(driver);
 	
-	@When("Enter Mobile Number")
-	public void enter_mobile_number() {
-    	long rand = d.randomnumber(500000);
-		String vg=String.valueOf(rand);
-		String num = "95421"+vg;
-    	System.out.println(num);
-		   driver.findElement(By.xpath("(//input[@id=\"mobile-number\"])[1]")).sendKeys(num);
-		     
-		 			   driver.findElement(By.xpath("(//input[@id='agreement'])[1]")).click();
-		 			   driver.findElement(By.xpath("(//button[@id=\"submit\"])[1]")).click();
-	}
-    	
-    	
 	
-	   
-	
+	static long rand = d.randomnumber(50000);
+	static	String vg=String.valueOf(rand);
+	static String num = "95421"+vg;
+	 static  String leadId;
 
+	@When("Enter Mobile Number")
+	public void enter_mobile_number() throws InterruptedException {
+   //	lc.getOTP();
+		driver.findElement(By.xpath("(//input[@id=\"mobile-number\"])[1]")).sendKeys(num);
+	Thread.sleep(1000);
+		System.out.println(num);
+        
+
+        driver.findElement(By.xpath("(//input[@id='agreement'])[1]")).click();
+
+        driver.findElement(By.xpath("(//button[@id=\"submit\"])[1]")).click();
+        
+        Reporter.log(num);
+        
+	}
+	
 	@Then("get successful message popup")
 	public void get_successful_message_popup() {
 		WebElement flashMessage = driver.findElement(By.xpath("//div[text()='OTP sent successfully']"));
@@ -49,26 +59,27 @@ public class InstaStepDef extends Driver {
 		wait.until(ExpectedConditions.visibilityOf(flashMessage));
 		String flashMessageText = flashMessage.getText();
 		System.out.println(flashMessageText);
-		Assert.assertEquals(flashMessageText, "OTP sent successfully");
-		
-	}
+		Assert.assertEquals(flashMessageText, "OTP sent successfully");}
 
 	@When("Enter OTP")
 	public void enter_otp() {
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("1");
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("2");
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("3");
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("4");
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("5");
-		 driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("6");
+		lc.enterOTP();
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[1]")).sendKeys("1");
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[2]")).sendKeys("2");
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[3]")).sendKeys("3");
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[4]")).sendKeys("4");
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[5]")).sendKeys("5");
+//		 driver.findElement(By.xpath("(//input[@type=\"number\"])[6]")).sendKeys("6");
 		 		 		 
 	}
 
 	
 	@When("click on Verifying button")
 	public void click_on_verifying_button() {
-		driver.findElement(By.xpath("(//button[@id=\"submit-verify-otp\"])[1]")).click();
+//		driver.findElement(By.xpath("(//button[@id=\"submit-verify-otp\"])[1]")).click();
+//	}  
 	}
+	
 
 	@Then("Landing into quick eligibility check page should be displayed")
 	public void landing_into_quick_eligibility_check_page_should_be_displayed() {
@@ -77,22 +88,51 @@ public class InstaStepDef extends Driver {
 	
 	@Then("Fetch the lead ID from Insta API")
 		public void Fetch_the_lead_ID_from_Insta_API() {
+
 		
 //		RestAssured.given().baseUri("")
 		
 	}
 
+//	@Then("Enter {string} {string}")
+//	public void enter(String string, String string2) {
+//	    WebElement pincode = driver.findElement(By.xpath("//input[@placeholder='Eg., 560078']"));
+//	   pincode.sendKeys("560078");
+//	    WebElement email = driver.findElement(By.xpath("//input[@placeholder='Enter here']"));
+//	    email.sendKeys("neo123@gmail.com");
+//	}
+//		Response response = RestAssured.given()
+//		          .baseUri("https://crm2_0uat.neogrowth.in")
+//		          .body("{\r\n"
+//		                  + "  \"lead_id\": \"8c28522a-102a-6a38-3a57-649978328d00\"\r\n"
+//		                  + "}")
+//		          .headers("REQUESTEDMODULE", "Lead", "REQUESTEDMETHOD", "Fetch", "Content-Type", "application/json;charset=utf-8","Accept", "application/json, text/plain, application/json",
+//		          		"Authorization", "BasicTkczOTU6V2VsY29tZUAxMjM=","User-Agent", "PostmanRuntime/7.32.2","Accept-Language", "en-US","Cache-Control", "no-cache",
+//		          		"AUTHORIZEDAPPLICATION","N30gr0wth")
+//		          .when().log().all().get("/index.php?entryPoint=crmapi")
+//		          .then().log().all().assertThat().statusCode(200).extract().response();
+//
+//	  String responseBody = response.jsonPath().getString("Leads[0].channel_source");
+//		  System.out.println(responseBody);
+//		  
+//		     }
+		
+		
+	
+
 	@Then("Enter {string} {string}")
 	public void enter(String string, String string2) {
-	    WebElement pincode = driver.findElement(By.xpath("//input[@placeholder='Eg., 560078']"));
-	   pincode.sendKeys("560078");
-	    WebElement email = driver.findElement(By.xpath("//input[@placeholder='Enter here']"));
-	    email.sendKeys("neo123@gmail.com");
+	lc.enterpincodeandemailid(string, string2);
+
 	}
 
 	@Then("click on Next button")
 	public void click_on_next_button() {
+
 	    driver.findElement(By.xpath("//button[text()='Next']")).click();
+
+	   lc.clickNextButton();
+
 	}
 
 	@Then("user should lands to business pan quick eligibility check page")
@@ -103,7 +143,10 @@ public class InstaStepDef extends Driver {
 	@Then("Enter {string}")
 	public void enter(String string) {
 	    WebElement PanNumber = driver.findElement(By.xpath("//input[@placeholder='XXXXX0000X']"));
-	    PanNumber.sendKeys("CBKPS6194L");
+
+	   // PanNumber.sendKeys("CBKPS6194L");
+	    PanNumber.sendKeys("AOSPV4431J");
+
 	}
 
 	@Then("click on correct button")
@@ -205,7 +248,8 @@ public class InstaStepDef extends Driver {
 	
 	@Then("Enter the value into pincode")
 	public void enter_the_value_into_pincode() {
-		driver.findElement(By.xpath("(//input[@placeholder='Enter here'])[5]")).sendKeys("560078");
+
+		driver.findElement(By.xpath("(//input[@placeholder='Enter here'])[5]")).sendKeys("560040");
 		driver.findElement(By.xpath("//button[text()='Next']")).click();
 	}
 
@@ -223,12 +267,16 @@ public class InstaStepDef extends Driver {
 	
 	@When("Enter valid username and password click on the login btn")
 	public void enter_valid_username_and_password_click_on_the_login_btn() {
-	    driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("Pavan.Joshi");
-	    driver.findElement(By.xpath("//input[@id=\"password\"]")).sendKeys("Gadga@12345");
-	    driver.findElement(By.xpath("//button[@class=\"button\"]")).click();
+
+//	    driver.findElement(By.xpath("//input[@name=\"username\"]")).sendKeys("Pavan.Joshi");
+//	    driver.findElement(By.xpath("//input[@id=\"password\"]")).sendKeys("Gadga@12345");
+//	    driver.findElement(By.xpath("//button[@class=\"button\"]")).click();
 	    
 	}
-      
+
+	    
+
+
 
 	@Then("verified Home page url")
 	public void verified_home_page_url() {
@@ -247,8 +295,99 @@ public class InstaStepDef extends Driver {
 	}
 
 	
-	
-	
-
-
+	@Given("AddLeadAPI Payload with {string}")
+	public void add_lead_api_payload_with(String string) throws IOException { 
+		
+		
 }
+
+	@Then("the API call got success with status code {int}")
+	public void the_API_call_got_success_with_status_code(Integer int1) {
+	    
+		
+	
+	}
+	@Then("the call Payload with {string} {string}")
+	public void the_call_payload_with(String string, String string2) throws IOException {
+		
+	}
+
+	@Then("calls endpoint {string} with {string} http request")
+	public void calls_endpoint_with_http_request(String string, String string2) {
+		
+	}
+
+	@Then("verifyOTP call got success with status code {int}")
+	public void verify_otp_call_got_success_with_status_code(Integer int1) {
+		
+	}
+	@Given("AddLeadAPI Payload with register numebr first")
+	public void add_lead_api_payload_with_register_numebr_first() 
+	{
+		RestAssured.baseURI="https://uat.advancesuite.in:3071";
+		 Response respo = given().header("Content-Type","application/json").body("{\r\n"
+				+ "  \"mobile\": \""+num+"\"\r\n"
+				+ "}")
+		 .when().log().all().post("/api/v2/otp")
+		.then()
+		.assertThat().statusCode(200).extract().response();
+    String msg= respo.jsonPath().getString("message");
+    System.out.println(msg); 
+    }
+	
+
+	@Then("addotpAPI Payload with succefully OTP")
+	public void addotp_api_payload_with_succefully_otp() {
+		RestAssured.baseURI="https://uat.advancesuite.in:3071/api/v2/register";
+   	 String requestBody = "{ \"mobile\": \""+num+"\", \"otp\": \"123456\", \"lead_source\": \"Marketing\" }";
+
+		  Response respo1 = given().headers("Content-Type","application/json","User-Agent","PostmanRuntime/7.32.3","Accept","*/*")
+				  .body(requestBody)
+		      .when().log().all().post()
+		      .then().assertThat().statusCode(200)
+		        .extract().response();
+	  String leadId = respo1.jsonPath().getString("data.lead.crm_lead_id");
+	  
+	  System.out.println(num);
+ System.out.println(leadId);
+ }
+	
+	@Then("Call CRMAPI with leadID while generated From InstathroughMobileNumber")
+	public void call_crmapi_with_lead_id_while_generated_from_instathrough_mobile_number() {
+		String leadidfetch =
+				"{\r\n"
+		+ "\"lead_id\":\""+leadId+"\"\r\n"
+		+ "}";
+		
+		Response response = RestAssured.given()
+		          .baseUri("https://crm2_0uat.neogrowth.in")
+		          .body(leadidfetch)
+		          .headers("REQUESTEDMODULE", "Lead", "REQUESTEDMETHOD", "Fetch", "Content-Type", "application/json;charset=utf-8","Accept", "application/json, text/plain, application/json",
+		          		"Authorization", "BasicTkczOTU6V2VsY29tZUAxMjM=","User-Agent", "PostmanRuntime/7.32.2","Accept-Language", "en-US","Cache-Control", "no-cache",
+		          		"AUTHORIZEDAPPLICATION","N30gr0wth")
+		          .when().log().all().get("/index.php?entryPoint=crmapi")
+		
+		
+	 //  RestAssured.baseURI="https://crm2_0uat.neogrowth.in/index.php?entryPoint=crmapi";
+	//   Response response = given().headers("Content-Type","application/json").body(leadidfetch)
+	 //  .when().log().all().get()
+	   .then().assertThat().statusCode(200).extract().response();
+	  String leadsource = response.jsonPath().getString("Leads[0].lead_source");
+	  String phonemobile= response.jsonPath().getString("Leads[0].phone_mobile");
+	  String productC=  response.jsonPath().getString("Leads[0].product_c");
+	  String sourceType= response.jsonPath().getString("Leads[0].source_type");
+	  String channel_source=response.jsonPath().getString("Leads[0].channel_source");
+	  System.out.println(leadsource);
+	  System.out.println(phonemobile);
+	  System.out.println(productC);
+	  System.out.println(sourceType);
+	  System.out.println(channel_source);
+	  Assert.assertEquals("Marketing", leadsource);
+	  Assert.assertEquals(num, phonemobile);
+	  Assert.assertEquals("Insta Express Digital", productC);
+	  Assert.assertEquals("NeoCash Insta", sourceType);
+	  Assert.assertEquals("Insta", channel_source);
+	  
+	   
+	}  
+	}

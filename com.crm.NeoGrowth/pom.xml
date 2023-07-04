@@ -16,15 +16,12 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>5.9.2</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
+            
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-bom</artifactId>
                 <version>7.11.1</version>
-                
-                
             </dependency>
 
             <dependency>
@@ -40,6 +37,7 @@
                 <version>${cucumber.version}</version>
                 <scope>test</scope>
             </dependency>
+            
         </dependencies>
     </dependencyManagement>
 
@@ -62,14 +60,12 @@
     <version>2.14.3</version>
 </dependency>
         
-        
-
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-jvm-deps</artifactId>
             <version>1.0.6</version>
-
         </dependency>
+        
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
@@ -123,17 +119,6 @@
     <artifactId>webdrivermanager</artifactId>
     <version>5.3.1</version>
       </dependency>
-
-
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
 
 
         <dependency>

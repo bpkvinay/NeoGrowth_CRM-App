@@ -3,16 +3,17 @@ Feature: Insta Application
 
 
   Scenario Outline: Enter the mobile number
+    Given AddLeadAPI Payload with register numebr first
+    Then addotpAPI Payload with succefully OTP
+    And Fetch the lead ID from Insta API
     When Enter Mobile Number
     Then get successful message popup
     When Enter OTP
-    And click on Verifying button
     Then Landing into quick eligibility check page should be displayed
-    And Fetch the lead ID from Insta API
     And Enter "<Pincode>" "<EmailID>"
     And click on Next button 
     Then user should lands to business pan quick eligibility check page 
-    And Enter "<business PAN>" 
+    And Enter "<business PAN>"
     And  click on correct button 
     And click on the close button
     And click on the Next button
@@ -41,31 +42,13 @@ Feature: Insta Application
     When Enter valid username and password click on the login btn
     Then Click on the lead options 
     And Verify lead details
+    Then Call CRMAPI with leadID while generated From InstathroughMobileNumber
     
-     
-    
-    
-    
-    
-  
-    
-
-  #Scenario Outline: Eligibility check
-    #Given quick eligibility check
-    #When Enter Pincode and EmailID
-    #Then verify eligibility check
+    Examples:
+    |Pincode|EmailID|
+    |560040|vg@gmail.com|
     
     
-   
     
     
-     
-    
-    
- 
-
-
-
- 
-
 
