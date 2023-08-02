@@ -3,6 +3,11 @@ package com.crm.GenericUtilis;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -40,6 +45,7 @@ public class SeleniumUtility extends Driver {
 	
 	public JavascriptExecutor jsExecutor=(JavascriptExecutor)driver;
 	public static RequestSpecification Requestspec;
+	public Connection connection;
 	
 	     
 	/**
@@ -292,12 +298,39 @@ public class SeleniumUtility extends Driver {
 			JsonPath   js = new JsonPath(resp);
 			return js.get(key).toString();
 		}
-
+ 
+		public void mysqlconnector() throws SQLException, IOException {
+			 //Driver d=new Driver();
+			
+			connection = DriverManager.getConnection(readConfig("Instance"),readConfig("DBUSername"),readConfig("DBPassword"));
+			 ;
+			 
+			 
+			 }
+			 
+			 
+			
+			 
+			 public String executequery(String query1, String coloumname) throws SQLException {
+				
+				 Statement statement = connection.createStatement();
+				 //String query1="select id from leads where phone_mobile='9542148929'";
+				 ResultSet resultset = statement.executeQuery(query1);
+				 resultset.next() ;
+					 String coloumnvalue = resultset.getString(coloumname);
+					 return coloumnvalue;
+				 
+			
+				 
+				 
+		  }
 										 
 										 
-										 
-									}
- 				
+//			public void setquery() {
+//				
+//				String query="select id from leads where phone_mobile='"++"'"
+//			}
+									}		
 
 
 
