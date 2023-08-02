@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,7 @@ public class InstaStepDef extends Driver {
 	static	String vg=String.valueOf(rand);
 	static String num = "95421"+vg;
 	 static  String leadId;
+	 String query="select id from leads where phone_mobile='"+num+"'";
 
 	@When("Enter Mobile Number")
 	public void enter_mobile_number() throws InterruptedException {
@@ -339,6 +341,18 @@ public class InstaStepDef extends Driver {
 	  Assert.assertEquals("NeoCash Insta", sourceType);
 	  Assert.assertEquals("Insta", channel_source);
 	
+	}
+	
+	@Then("Verify LeadID from database by putting mobilenumber")
+	public void verify_lead_id_from_database_by_putting_mobilenumber() throws SQLException, IOException {
+		
+		sel.mysqlconnector();
+		  String DBLeadID  = sel.executequery(query,"id");
+		Assert.assertEquals(DBLeadID, leadId);
+		System.out.println(DBLeadID);
+		System.out.println(leadId);
+		
+		
 	}
 }
 

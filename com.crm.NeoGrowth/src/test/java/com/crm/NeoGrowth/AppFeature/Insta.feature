@@ -37,13 +37,10 @@ Feature: Insta To CRM Applications End To End Scenarios
     And Enter the value into pincode "<Pincode>"
     And click on the Next button 
     Then KYC verification options page should be displayed
-    #When Enter CRM URL launch CRM application
-    #Then verified Home page url
-    #When Enter valid username and password click on the login btn
-    #Then Click on the lead options 
-    #And Verify lead details
     Then Call CRMAPI with leadID while generated From InstathroughMobileNumber
+    Then Verify LeadID from database by putting mobilenumber 
+    
     
     Examples:
     |Pincode|EmailID|business PAN|
-    |560040|vg@gmail.com|BAWPM3735P|
+    |560040|vg@gmail.com|AOSPV4431J|
